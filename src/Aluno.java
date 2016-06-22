@@ -3,6 +3,7 @@ public class Aluno {
 		private String nome;
 		private String senha;
 		private String email;
+		
 		public String getNome() {
 			return nome;
 		}
@@ -23,5 +24,3 @@ public class Aluno {
 		}
 
 }
-
-
