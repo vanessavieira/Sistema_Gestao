@@ -3,7 +3,7 @@ package Usuarios;
 public class Pesquisador {
 	private String nome;
 	private String senha;
-	private String email;
+	public String email;
 
 	public String getNome() {
 		return nome;

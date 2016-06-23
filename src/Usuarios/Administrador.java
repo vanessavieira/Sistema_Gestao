@@ -1,11 +1,11 @@
 package Usuarios;
 
 public class Administrador {
-	private String nome;
+	private String email;
 	private String senha;
 	
-	public Administrador (String nome, String senha){
-		this.nome = nome;
+	public Administrador (String email, String senha){
+		this.email = email;
 		this.senha = senha;
 	}
 	

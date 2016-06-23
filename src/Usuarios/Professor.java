@@ -3,7 +3,7 @@ package Usuarios;
 public class Professor {
 	private String nome;
 	private String senha;
-	private String email;
+	public String email;
 
 	public String getNome() {
 		return nome;
