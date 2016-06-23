@@ -26,7 +26,8 @@ public class TelaInicial {
 		num_aula_tradicional = 0;
 		num_apresentacao = 0;
 		num_laboratorio = 0;
-		int escolha;
+		int escolha, cadastrado;
+		cadastrado = 0;
 		ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
 		ArrayList<Professor> listaProfessores = new ArrayList<Professor>();
 		ArrayList<Pesquisador> listaPesquisadores = new ArrayList<Pesquisador>();
@@ -71,10 +72,11 @@ public class TelaInicial {
 
 							System.out.println("Nome do Usuario");
 							usuario.setNome(input.nextLine());
-							
-							/*if(usuario.getNome.equals("vanessa")){
-								System.out.print("foi1");
-							}*/
+
+							/*
+							 * if(usuario.getNome.equals("vanessa")){
+							 * System.out.print("foi1"); }
+							 */
 
 							System.out.println("Senha");
 							usuario.setSenha(input.nextLine());
@@ -87,30 +89,36 @@ public class TelaInicial {
 							String tipo = scan.nextLine();
 
 							if (tipo.equals("graduacao") || tipo.equals("mestrado") || tipo.equals("doutorado")) {
-								listaAlunos.add(usuario);
-								num_usuarios++;
-								System.out.println(listaAlunos.size());
-								System.out.println(usuario.email);
-								
-								for (Aluno alunos : listaAlunos){
-									System.out.println("entrou");
-									System.out.println(alunos.getEmail());
-									//erro nessa verificacao, declara que todos os emails ja foram cadastrados
-									if (email.equals(alunos.getEmail())){
-										System.out.print("Esse e-mail ja esta cadastrado");
+
+								for (Aluno alunos : listaAlunos) {
+									//System.out.println("entrou");
+									//System.out.println(alunos.getEmail());
+									// erro nessa verificacao, declara que todos
+									// os emails ja foram cadastrados
+									if (email.equals(alunos.email)) {
+										System.out.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.");
+										cadastrado++;
 										break;
 									}
 								}
-								System.out.println("Aluno(a) cadastrado com sucesso!");
-								System.out.println(
-										"Digite 0 para voltar ao menu ou qualquer outro número para cadastrar um novo usuario");
+								if (cadastrado == 0) {
+									listaAlunos.add(usuario);
+									num_usuarios++;
+									//System.out.println(listaAlunos.size());
+									System.out.println("Aluno(a) cadastrado com sucesso!");
+									System.out.println(
+											"Digite 0 para voltar ao menu ou qualquer outro número para cadastrar um novo usuario\n");
 
-								novaEscolha = input.nextInt();
-								input.nextLine();
+									novaEscolha = input.nextInt();
+									input.nextLine();
 
-								if (novaEscolha != 0) {
+									if (novaEscolha != 0) {
+										break;
+									}
+								} else {
+									cadastrado--;
 									break;
-								}	
+								}
 
 							} else {
 								System.out.println(
@@ -204,10 +212,11 @@ public class TelaInicial {
 				System.out.println("Numero de Apresentacoes:" + num_apresentacao);
 				System.out.println("Numero de Atividades em Laboratorio:" + num_laboratorio);
 				System.out.println("");
-				
-				/*for (Aluno usuario : listaAlunos){
-					System.out.println(usuario.getNome());
-				}*/
+
+				/*
+				 * for (Aluno usuario : listaAlunos){
+				 * System.out.println(usuario.getNome()); }
+				 */
 			}
 		} while (escolha != 6);
 	}
