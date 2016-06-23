@@ -102,7 +102,8 @@ public class TelaInicial {
 							String tipo = scan.nextLine();
 
 							if (tipo.equals("graduacao") || tipo.equals("mestrado") || tipo.equals("doutorado")) {
-	
+								listaAlunos.add(usuario);
+								num_usuarios++;
 								novaEscolha = input.nextInt();
 								input.nextLine();
 
