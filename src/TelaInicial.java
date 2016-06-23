@@ -78,33 +78,31 @@ public class TelaInicial {
 
 							System.out.println("Senha");
 							usuario.setSenha(input.nextLine());
-
-							System.out.println("Email");
-							usuario.setEmail(input.nextLine());
-							String email = usuario.getEmail();
-
+							boolean x;
+							do{
+								x=false;
+								System.out.println("Email");
+								usuario.setEmail(input.nextLine());
+								String email = usuario.getEmail();
+								
+								for (Aluno alunos : listaAlunos){
+									//System.out.println("entrou");
+									//System.out.println(alunos.getEmail());
+									//verificar primeiro e depois adicionar a lista caso nao exista
+									if (email.equals(alunos.getEmail())){
+										System.out.println("Esse e-mail ja esta cadastrado");
+										x=true;
+										break;
+									}
+								}
+							}while(x);
+							
+							
 							System.out.println("Tipo de Aluno (graduacao, mestrado ou doutorado)");
 							String tipo = scan.nextLine();
 
 							if (tipo.equals("graduacao") || tipo.equals("mestrado") || tipo.equals("doutorado")) {
-								listaAlunos.add(usuario);
-								num_usuarios++;
-								System.out.println(listaAlunos.size());
-								System.out.println(usuario.email);
-								
-								for (Aluno alunos : listaAlunos){
-									System.out.println("entrou");
-									System.out.println(alunos.getEmail());
-									//erro nessa verificacao, declara que todos os emails ja foram cadastrados
-									if (email.equals(alunos.getEmail())){
-										System.out.print("Esse e-mail ja esta cadastrado");
-										break;
-									}
-								}
-								System.out.println("Aluno(a) cadastrado com sucesso!");
-								System.out.println(
-										"Digite 0 para voltar ao menu ou qualquer outro número para cadastrar um novo usuario");
-
+	
 								novaEscolha = input.nextInt();
 								input.nextLine();
 
