@@ -1,10 +1,10 @@
 package Usuarios;
 
 public class Aluno {
-	private String nome;
+	public String nome;
 	private String senha;
 	public String email;
-	private String tipo;
+	public String tipo;
 
 	public String getNome() {
 		return nome;
