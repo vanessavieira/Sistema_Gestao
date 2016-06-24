@@ -15,7 +15,7 @@ public class TelaInicial {
 
 	public static void main(String[] args) {
 
-		Administrador baldoino = new Administrador("baldoino@ic.ufal.br", "123senha");
+		Administrador baldoino = new Administrador();
 
 		int num_usuarios, num_recursos_alocacao, num_recursos_alocado, num_recursos_andamento, num_recursos_concluido,
 				num_alocacoes, num_aula_tradicional, num_apresentacao, num_laboratorio;
@@ -34,6 +34,8 @@ public class TelaInicial {
 		ArrayList<Pesquisador> listaPesquisadores = new ArrayList<Pesquisador>();
 		String emailUsuario;
 		String senhaUsuario;
+		String emailAdministrador = "baldoino@ic.ufal.br";
+		String senhaAdministrador = "senha123";
 
 		do {
 			System.out.println("  SISTEMA DE GESTAO\n     DE RECURSOS\n      (2016.1)\n\n");
@@ -44,11 +46,6 @@ public class TelaInicial {
 			System.out.println("4. Consulta");
 			System.out.println("5. Relatorio Atual");
 			System.out.println("6. Sair do Sistema");
-
-			/*
-			 * email; prof[13].email = email; if(prof[i].email == email)
-			 * posAluno = i; if(senha == prof[posAluno].senha)
-			 */
 
 			input = new Scanner(System.in);
 			escolha = input.nextInt();
@@ -65,7 +62,7 @@ public class TelaInicial {
 					System.out.println("2. Professor");
 					System.out.println("3. Pesquisador");
 					System.out.println("4. Administrador");
-					System.out.println("5. Sair do Sistema");
+					System.out.println("5. Voltar ao Menu");
 
 					Novaescolha = input.nextInt();
 					input.nextLine();
@@ -84,10 +81,9 @@ public class TelaInicial {
 						senhaUsuario = usuario.getSenha();
 
 						for (Aluno usuarios : listaAlunos) {
-							if (emailUsuario.equals(usuarios.getEmail())) {
-								if (senhaUsuario.equals(usuarios.getSenha())) {
-									System.out.println("Bem-vindo ao Sistema de Gerenciamento!\n");
-								}
+							if (emailUsuario.equals(usuarios.getEmail()) && senhaUsuario.equals(usuarios.getSenha())) {
+								System.out.println("Bem-vindo ao Sistema de Gerenciamento!\n");
+								Novaescolha = 5;
 								break;
 							}
 							posicaoAluno++;
@@ -103,8 +99,77 @@ public class TelaInicial {
 						 * System.out.println(usuarioss.getEmail()); }
 						 * System.out.println("posicao no array:"+posicaoAluno);
 						 */
-					} else if (Novaescolha == 2){
-						
+					} else if (Novaescolha == 2) {
+						scan = new Scanner(System.in);
+						Professor usuario = new Professor();
+						int posicaoProfessor = 0;
+
+						System.out.println("Email do Professor(a):");
+						usuario.setEmail(input.nextLine());
+						emailUsuario = usuario.getEmail();
+
+						System.out.println("Senha:");
+						usuario.setSenha(input.nextLine());
+						senhaUsuario = usuario.getSenha();
+
+						for (Professor usuarios : listaProfessores) {
+							if (emailUsuario.equals(usuarios.getEmail()) && senhaUsuario.equals(usuarios.getSenha())) {
+								System.out.println("Bem-vindo ao Sistema de Gerenciamento!\n");
+								Novaescolha = 5;
+								break;
+							}
+							posicaoProfessor++;
+						}
+
+						if (posicaoProfessor == listaProfessores.size()) {
+							System.out.println("\nEmail e/ou senha incorretos\n\n");
+							break;
+						}
+					} else if (Novaescolha == 3) {
+						scan = new Scanner(System.in);
+						Pesquisador usuario = new Pesquisador();
+						int posicaoPesquisador = 0;
+
+						System.out.println("Email do Pesquisador(a):");
+						usuario.setEmail(input.nextLine());
+						emailUsuario = usuario.getEmail();
+
+						System.out.println("Senha:");
+						usuario.setSenha(input.nextLine());
+						senhaUsuario = usuario.getSenha();
+
+						for (Pesquisador usuarios : listaPesquisadores) {
+							if (emailUsuario.equals(usuarios.getEmail()) && senhaUsuario.equals(usuarios.getSenha())) {
+								System.out.println("Bem-vindo ao Sistema de Gerenciamento!\n");
+								Novaescolha = 5;
+								break;
+							}
+							posicaoPesquisador++;
+						}
+
+						if (posicaoPesquisador == listaPesquisadores.size()) {
+							System.out.println("\nEmail e/ou senha incorretos\n\n");
+							break;
+						}
+					} else if (Novaescolha == 4) {
+						scan = new Scanner(System.in);
+						Administrador usuario = new Administrador();
+
+						System.out.println("Email do Pesquisador(a):");
+						usuario.setEmail(input.nextLine());
+						emailUsuario = usuario.getEmail();
+
+						System.out.println("Senha:");
+						usuario.setSenha(input.nextLine());
+						senhaUsuario = usuario.getSenha();
+
+						if (emailUsuario.equals(emailAdministrador) && senhaUsuario.equals(senhaAdministrador)) {
+							System.out.println("Bem-vindo ao Sistema de Gerenciamento!\n");
+							Novaescolha = 5;
+							break;
+						} else {
+							System.out.println("Email e/ou senha de administrador incorretos");
+						}
 					}
 				} while (Novaescolha != 5);
 
