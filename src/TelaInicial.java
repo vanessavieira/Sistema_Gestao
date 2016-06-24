@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.Calendar;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import Usuarios.Aluno;
 import Usuarios.Professor;
 import Usuarios.Pesquisador;
@@ -13,12 +14,30 @@ public class TelaInicial {
 	private static Scanner input;
 	private static Scanner scan;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException {
 
 		Administrador Baldoino = new Administrador();
 
 		int num_usuarios, num_recursos_alocacao, num_recursos_alocado, num_recursos_andamento, num_recursos_concluido,
 				num_alocacoes, num_aula_tradicional, num_apresentacao, num_laboratorio;
+		int escolhaMenu, cadastrado;
+		int logouAluno, logouProfessor, logouPesquisador, logouAdministrador;
+
+		String emailUsuario = "nenhum";
+		String senhaUsuario = "nenhuma";
+		String emailAdministrador = "baldoino@ic.ufal.br";
+		String senhaAdministrador = "senha123";
+		
+		ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
+		ArrayList<Professor> listaProfessores = new ArrayList<Professor>();
+		ArrayList<Pesquisador> listaPesquisadores = new ArrayList<Pesquisador>();
+		
+		Calendar dataAtual = Calendar.getInstance();
+		dataAtual.set(2016, Calendar.JUNE,29);
+		dataAtual.set(Calendar.HOUR_OF_DAY,1);
+		DateFormat formatoData = DateFormat.getDateInstance();
+		Date data = dataAtual.getTime();	
+		
 		num_usuarios = 1;
 		num_recursos_alocacao = 0;
 		num_recursos_alocado = 0;
@@ -27,26 +46,20 @@ public class TelaInicial {
 		num_aula_tradicional = 0;
 		num_apresentacao = 0;
 		num_laboratorio = 0;
-		int escolhaMenu, cadastrado;
-		int logouAluno, logouProfessor, logouPesquisador, logouAdministrador;
 		cadastrado = 0;
 		logouAluno = 0;
 		logouProfessor = 0;
 		logouPesquisador = 0;
-		logouAdministrador = 0;
-		ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
-		ArrayList<Professor> listaProfessores = new ArrayList<Professor>();
-		ArrayList<Pesquisador> listaPesquisadores = new ArrayList<Pesquisador>();
-		String emailUsuario = "nenhum";
-		String senhaUsuario = "nenhuma";
-		String emailAdministrador = "baldoino@ic.ufal.br";
-		String senhaAdministrador = "senha123";
+		logouAdministrador = 0;	
 
 		do {
+			data = dataAtual.getTime();
+			System.out.println("Data: "+formatoData.format(data));
+			System.out.println("Hora: "+dataAtual.get(Calendar.HOUR_OF_DAY));
 			System.out.println(
 					"  ----------SISTEMA DE GESTAO----------\n     ----------DE RECURSOS----------\n      ----------(2016.1)----------\n\n");
 			System.out.println("Escolha uma opcao:");
-			System.out.println("1. Login");
+			System.out.println("1. Login/Logout");
 			System.out.println("2. Cadastro");
 			System.out.println("3. Locacao de Recursos");
 			System.out.println("4. Consulta");
@@ -60,6 +73,7 @@ public class TelaInicial {
 
 			if (escolhaMenu == 1) {
 				int escolhaLogin = 0;
+				int escolhaLogout = 0;
 
 				do {
 					if (logouAluno == 0 && logouProfessor == 0 && logouPesquisador == 0 && logouAdministrador == 0) {
@@ -78,7 +92,7 @@ public class TelaInicial {
 							scan = new Scanner(System.in);
 							Aluno usuario = new Aluno();
 							int posicaoAluno = 0;
-							
+
 							System.out.println("\n----------LOGIN DE ALUNO(A)----------\n\n");
 
 							System.out.println("Email do Aluno(a):");
@@ -101,7 +115,8 @@ public class TelaInicial {
 							}
 
 							if (posicaoAluno == listaAlunos.size()) {
-								System.out.println("\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
+								System.out.println(
+										"\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
 								break;
 							}
 
@@ -115,7 +130,7 @@ public class TelaInicial {
 							scan = new Scanner(System.in);
 							Professor usuario = new Professor();
 							int posicaoProfessor = 0;
-							
+
 							System.out.println("\n----------LOGIN DE PROFESSOR(A)----------\n\n");
 
 							System.out.println("Email do Professor(a):");
@@ -138,14 +153,15 @@ public class TelaInicial {
 							}
 
 							if (posicaoProfessor == listaProfessores.size()) {
-								System.out.println("\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
+								System.out.println(
+										"\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
 								break;
 							}
 						} else if (escolhaLogin == 3) {
 							scan = new Scanner(System.in);
 							Pesquisador usuario = new Pesquisador();
 							int posicaoPesquisador = 0;
-							
+
 							System.out.println("\n----------LOGIN DE PESQUISADOR(A)----------\n\n");
 
 							System.out.println("Email do Pesquisador(a):");
@@ -168,13 +184,14 @@ public class TelaInicial {
 							}
 
 							if (posicaoPesquisador == listaPesquisadores.size()) {
-								System.out.println("\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
+								System.out.println(
+										"\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
 								break;
 							}
 						} else if (escolhaLogin == 4) {
 							scan = new Scanner(System.in);
 							Administrador usuario = new Administrador();
-							
+
 							System.out.println("\n----------LOGIN DE ADMINISTRADOR----------\n\n");
 
 							System.out.println("Email do Administrador:");
@@ -195,10 +212,29 @@ public class TelaInicial {
 							}
 						}
 					} else {
-						System.out.println("Voce ja esta logado. Email:" + emailUsuario);
-						System.out.println("");
-						escolhaLogin = 5;
-						break;
+						System.out.println("\n----------LOGOUT----------\n\n");
+						System.out.println("Voce esta logado com a conta: " + emailUsuario);
+						System.out.println("Deseja desconectar dessa conta?");
+						System.out.println("1. Sim");
+						System.out.println("2. Nao");
+
+						escolhaLogout = input.nextInt();
+						input.nextLine();
+
+						if (escolhaLogout == 1) {
+							logouAluno = 0;
+							logouProfessor = 0;
+							logouPesquisador = 0;
+							logouAdministrador = 0;
+							emailUsuario = "nenhum";
+							senhaUsuario = "nenhuma";
+							System.out.println("Voce foi desconectado.\n");
+							escolhaLogin = 5;
+							break;
+						} else if (escolhaLogout == 2) {
+							escolhaLogin = 5;
+							break;
+						}
 					}
 				} while (escolhaLogin != 5);
 
@@ -222,7 +258,7 @@ public class TelaInicial {
 							scan = new Scanner(System.in);
 
 							Aluno usuario = new Aluno();
-							
+
 							System.out.println("\n----------CADASTRAMENTO DE ALUNO(A)----------\n\n");
 
 							System.out.println("\nNome do Usuario");
@@ -300,7 +336,7 @@ public class TelaInicial {
 							scan = new Scanner(System.in);
 
 							Professor usuario = new Professor();
-							
+
 							System.out.println("\n----------CADASTRAMENTO DE PROFESSOR(A)----------\n\n");
 
 							System.out.println("\nNome do Usuario");
@@ -363,7 +399,7 @@ public class TelaInicial {
 							scan = new Scanner(System.in);
 
 							Pesquisador usuario = new Pesquisador();
-							
+
 							System.out.println("\n----------CADASTRAMENTO DE PESQUISADOR(A)----------\n\n");
 
 							System.out.println("\nNome do Usuario");
@@ -461,64 +497,80 @@ public class TelaInicial {
 
 								Aluno usuario = new Aluno();
 
-								System.out.println("\n----------CONSULTA POR ALUNO(A)----------\n\n");
-								System.out
-										.println("Digite o Email do(a) aluno(a) para obter informacoes sobre ele(a):");
+								if (listaAlunos.size() == 0) {
+									System.out.println("\nNao existe cadastro de alunos no Sistema.\n");
+								} else {
 
-								usuario.setEmail(input.nextLine());
-								String email = usuario.getEmail();
+									System.out.println("\n----------CONSULTA POR ALUNO(A)----------\n\n");
+									System.out.println(
+											"Digite o Email do(a) aluno(a) para obter informacoes sobre ele(a):");
 
-								for (Aluno usuarios : listaAlunos) {
-									if (email.equals(usuarios.getEmail())) {
-										System.out.println("\nNome:  " + usuarios.getNome());
-										System.out.println("Tipo de Aluno:  " + usuarios.getTipo());
-										System.out.println("E-mail:  " + usuarios.getEmail());
-									} else {
-										System.out.println("\nNao existe cadastro de aluno com tal e-mail.\n");
+									usuario.setEmail(input.nextLine());
+									String email = usuario.getEmail();
+
+									for (Aluno usuarios : listaAlunos) {
+										if (email.equals(usuarios.getEmail())) {
+											System.out.println("\nNome:  " + usuarios.getNome());
+											System.out.println("Tipo de Aluno:  " + usuarios.getTipo());
+											System.out.println("E-mail:  " + usuarios.getEmail());
+										} else {
+											System.out.println("\nNao existe cadastro de aluno com tal e-mail.\n");
+										}
 									}
 								}
+
 							} else if (escolhaConsulta1 == 2) {
 								scan = new Scanner(System.in);
 
 								Professor usuario = new Professor();
 
-								System.out.println("\n----------CONSULTA POR PROFESSOR(A)----------\n\n");
-								System.out.println(
-										"Digite o Email do(a) professor(a) para obter informacoes sobre ele(a):");
+								if (listaProfessores.size() == 0) {
+									System.out.println("\nNao existe cadastro de professores no Sistema.\n");
+								} else {
 
-								usuario.setEmail(input.nextLine());
-								String email = usuario.getEmail();
+									System.out.println("\n----------CONSULTA POR PROFESSOR(A)----------\n\n");
+									System.out.println(
+											"Digite o Email do(a) professor(a) para obter informacoes sobre ele(a):");
 
-								for (Professor usuarios : listaProfessores) {
-									if (email.equals(usuarios.getEmail())) {
-										System.out.println("\nNome:  " + usuarios.getNome());
-										System.out.println("E-mail:  " + usuarios.getEmail());
-									} else {
-										System.out.println("\nNao existe cadastro de professor com tal e-mail.\n");
+									usuario.setEmail(input.nextLine());
+									String email = usuario.getEmail();
+
+									for (Professor usuarios : listaProfessores) {
+										if (email.equals(usuarios.getEmail())) {
+											System.out.println("\nNome:  " + usuarios.getNome());
+											System.out.println("E-mail:  " + usuarios.getEmail());
+										} else {
+											System.out.println("\nNao existe cadastro de professor com tal e-mail.\n");
+										}
 									}
 								}
 							} else if (escolhaConsulta1 == 3) {
 								scan = new Scanner(System.in);
 
 								Pesquisador usuario = new Pesquisador();
+								if (listaPesquisadores.size() == 0) {
+									System.out.println("\nNao existe cadastro de pesquisadores no Sistema.\n");
+								} else {
 
-								System.out.println("\n----------CONSULTA POR PESQUISADOR(A)----------\n\n");
-								System.out.println(
-										"Digite o Email do(a) pesquisador(a) para obter informacoes sobre ele(a):");
+									System.out.println("\n----------CONSULTA POR PESQUISADOR(A)----------\n\n");
+									System.out.println(
+											"Digite o Email do(a) pesquisador(a) para obter informacoes sobre ele(a):");
 
-								usuario.setEmail(input.nextLine());
-								String email = usuario.getEmail();
+									usuario.setEmail(input.nextLine());
+									String email = usuario.getEmail();
 
-								for (Pesquisador usuarios : listaPesquisadores) {
-									if (email.equals(usuarios.getEmail())) {
-										System.out.println("\nNome:  " + usuarios.getNome());
-										System.out.println("E-mail:  " + usuarios.getEmail());
-									} else {
-										System.out.println("\nNao existe cadastro de pesquisador com tal e-mail.\n");
+									for (Pesquisador usuarios : listaPesquisadores) {
+										if (email.equals(usuarios.getEmail())) {
+											System.out.println("\nNome:  " + usuarios.getNome());
+											System.out.println("E-mail:  " + usuarios.getEmail());
+										} else {
+											System.out
+													.println("\nNao existe cadastro de pesquisador com tal e-mail.\n");
+										}
 									}
 								}
 							} else if (escolhaConsulta1 == 4) {
-								//administrador	
+								// administrador
 								System.out.println("\nNome:  Baldoino Fonseca");
 								System.out.println("\nE-mail:  baldoino@ic.ufal.br");
 							} else if (escolhaConsulta1 == 5) {
