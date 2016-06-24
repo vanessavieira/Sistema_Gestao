@@ -1,9 +1,9 @@
 package Usuarios;
 
 public class Administrador {
-	public String email;
-	public String senha;
-	
+	private String email;
+	private String senha;
+
 	public String getEmail() {
 		return email;
 	}
@@ -19,5 +19,5 @@ public class Administrador {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 }

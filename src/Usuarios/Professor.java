@@ -29,9 +29,7 @@ public class Professor {
 		this.email = email;
 	}
 	/*
-	public Professor (String nome, String senha, String email){
-		this.nome = nome;
-		this.senha = senha;
-		this.email = email;
-	}*/
+	 * public Professor (String nome, String senha, String email){ this.nome =
+	 * nome; this.senha = senha; this.email = email; }
+	 */
 }
