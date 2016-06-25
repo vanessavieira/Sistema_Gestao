@@ -1,16 +1,11 @@
 package Usuarios;
 
-import java.util.ArrayList;
-
-import recursos.Recursos;
-
 public class Pessoa {
 
 	public String nome;
 	private String senha;
 	public String email;
-	
-	ArrayList<Recursos> historicoAlocacao = new ArrayList<Recursos>();
+	public String alocou;
 	
 	public String getNome() {
 		return nome;
@@ -36,8 +31,12 @@ public class Pessoa {
 		this.email = email;
 	}
 	
-	public void adicionarHistoricoAlocacao (Recursos recursos){
-		historicoAlocacao.add(recursos);
+	public String getAlocou() {
+		return alocou;
+	}
+
+	public void setAlocou(String alocou) {
+		this.alocou = alocou;
 	}
 	
 }
