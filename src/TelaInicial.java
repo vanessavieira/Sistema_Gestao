@@ -3,18 +3,22 @@ import java.util.Scanner;
 import java.util.Calendar;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.InputMismatchException;
 import Usuarios.Aluno;
 import Usuarios.Professor;
 import Usuarios.Pesquisador;
 import Usuarios.Administrador;
+import recursos.Recursos;
+import recursos.Auditorio;
+import recursos.Laboratorios;
+import recursos.Projetores;
+import recursos.Salas;
 
 public class TelaInicial {
 
 	private static Scanner input;
 	private static Scanner scan;
 
-	public static void main(String[] args) throws NumberFormatException {
+	public static void main(String[] args) {
 
 		Administrador Baldoino = new Administrador();
 
@@ -22,22 +26,30 @@ public class TelaInicial {
 				num_alocacoes, num_aula_tradicional, num_apresentacao, num_laboratorio;
 		int escolhaMenu, cadastrado;
 		int logouAluno, logouProfessor, logouPesquisador, logouAdministrador;
+		int[] statusAuditorio = { 0 };
+		int[] statusLaboratorio = { 0, 0, 0 };
+		int[] statusProjetor = { 0, 0, 0 };
+		int[] statusSala = { 0, 0, 0 };
 
 		String emailUsuario = "nenhum";
 		String senhaUsuario = "nenhuma";
 		String emailAdministrador = "baldoino@ic.ufal.br";
 		String senhaAdministrador = "senha123";
-		
+
 		ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
 		ArrayList<Professor> listaProfessores = new ArrayList<Professor>();
 		ArrayList<Pesquisador> listaPesquisadores = new ArrayList<Pesquisador>();
-		
+		ArrayList<Auditorio> listaAuditorio = new ArrayList<Auditorio>();
+		ArrayList<Laboratorios> listaLaboratorios = new ArrayList<Laboratorios>();
+		ArrayList<Projetores> listaProjetores = new ArrayList<Projetores>();
+		ArrayList<Salas> listaSalas = new ArrayList<Salas>();
+
 		Calendar dataAtual = Calendar.getInstance();
-		dataAtual.set(2016, Calendar.JUNE,29);
-		dataAtual.set(Calendar.HOUR_OF_DAY,1);
+		dataAtual.set(2016, Calendar.JUNE, 29);
+		dataAtual.set(Calendar.HOUR_OF_DAY, 10);
 		DateFormat formatoData = DateFormat.getDateInstance();
-		Date data = dataAtual.getTime();	
-		
+		Date data = dataAtual.getTime();
+
 		num_usuarios = 1;
 		num_recursos_alocacao = 0;
 		num_recursos_alocado = 0;
@@ -50,14 +62,14 @@ public class TelaInicial {
 		logouAluno = 0;
 		logouProfessor = 0;
 		logouPesquisador = 0;
-		logouAdministrador = 0;	
+		logouAdministrador = 0;
 
 		do {
 			data = dataAtual.getTime();
-			System.out.println("Data: "+formatoData.format(data));
-			System.out.println("Hora: "+dataAtual.get(Calendar.HOUR_OF_DAY));
+			System.out.println("Data: " + formatoData.format(data));
+			System.out.println("Hora: " + dataAtual.get(Calendar.HOUR_OF_DAY));
 			System.out.println(
-					"  ----------SISTEMA DE GESTAO----------\n     ----------DE RECURSOS----------\n      ----------(2016.1)----------\n\n");
+					"\n\n  ----------SISTEMA DE GESTAO----------\n     ----------DE RECURSOS----------\n      ----------(2016.1)----------\n\n");
 			System.out.println("Escolha uma opcao:");
 			System.out.println("1. Login/Logout");
 			System.out.println("2. Cadastro");
@@ -239,7 +251,7 @@ public class TelaInicial {
 				} while (escolhaLogin != 5);
 
 			} else if (escolhaMenu == 2) {
-				int escolhaCadastro;
+				int escolhaCadastro = 0;
 				do {
 					System.out.println("\n----------CADASTRO----------\n\n");
 					System.out.println("Escolha um Tipo de Usuario:");
@@ -462,8 +474,119 @@ public class TelaInicial {
 				} while (escolhaCadastro != 0);
 
 			} else if (escolhaMenu == 3) {
+				int escolhaLocacao = 0;
+				int confirmacaoLocacao = 0;
+				Auditorio auditorio1 = new Auditorio();
 
-				// locacao de recursos
+				do {
+					if (logouAluno == 0 && logouProfessor == 0 && logouPesquisador == 0 && logouAdministrador == 0) {
+						System.out.println("Voce nao esta logado no Sistema.\n");
+						break;
+					} else if (logouAluno == 1) {
+						System.out.println("Voce nao tem permissao para locar recursos.\n");
+						break;
+					} else if (logouProfessor == 1) {	
+						do {
+							System.out.println("\n----------LOCACAO DE RECURSOS----------\n\n");
+							System.out.println("Bem-vindo, Professor(a), que recurso voce deseja locar?");
+							System.out.println("1. Auditorio");
+							System.out.println("2. Laboratorio");
+							System.out.println("3. Projetor");
+							System.out.println("4. Sala");
+							System.out.println("5. Voltar ao Menu");
+
+							escolhaLocacao = input.nextInt();
+							input.nextLine();
+
+							if (escolhaLocacao == 1) {
+								scan = new Scanner(System.in);
+
+								if (statusAuditorio[0] == 0) {
+
+									System.out.println("\n----------LOCACAO DE AUDITORIO----------\n\n");
+									System.out.println("Informacoes basicas\n");
+
+									System.out.println(
+											"Titulo da Atividade (aula tradicional, apresentacoes ou laboratorio):");
+
+									auditorio1.setTitulo(input.nextLine());
+									String titulo = auditorio1.getTitulo();
+
+									if (titulo.equals("aula tradicional") || titulo.equals("apresentacoes")
+											|| titulo.equals("laboratorio")) {
+
+										System.out.println("Descricao da Atividade:");
+										auditorio1.setDescricao(input.nextLine());
+
+										System.out.println("Material Utilizado na Atividade:");
+										auditorio1.setMaterial(input.nextLine());
+
+										System.out.println("Data de Inicio da Atividade (dd/mm/aaaa):");
+										auditorio1.setDataInicio(input.nextLine());
+
+										System.out.println("Data de Termino da Atividade (dd/mm/aaaa):");
+										auditorio1.setDataFinal(input.nextLine());
+
+										System.out.println("Horario de Inicio (HH mm):");
+										auditorio1.setHoraInicio(input.nextLine());
+
+										System.out.println("Horario de Termino(HH mm):");
+										auditorio1.setHoraFinal(input.nextLine());
+
+										auditorio1.responsavel = emailUsuario;
+
+										statusAuditorio[0] = 1;
+
+										do {
+											System.out.println(
+													"\n----------CONFIRMACAO DE LOCACAO DE AUDITORIO----------\n\n");
+											System.out.println("\nTitulo:" + auditorio1.getTitulo());
+											System.out.println("\nDescricao:" + auditorio1.getDescricao());
+											System.out.println("\nMaterial:" + auditorio1.getMaterial());
+											System.out.println("\nData de Inicio:" + auditorio1.getDataInicio());
+											System.out.println("\nData de Termino:" + auditorio1.getDataFinal());
+											System.out.println("\nHora de Inicio:" + auditorio1.getHoraInicio());
+											System.out.println("\nHora de Final:" + auditorio1.getHoraFinal());
+											System.out.println("\nDeseja confimar a locacao do auditorio?");
+											System.out.println("1. Sim");
+											System.out.println("2. Nao");
+
+											confirmacaoLocacao = input.nextInt();
+											input.nextLine();
+
+											if (confirmacaoLocacao == 1) {
+												System.out.println(
+														"\n----------CONFIRMACAO DE LOCACAO DE AUDITORIO----------\n\n");
+												System.out.println("Auditorio Confirmado.");
+												statusAuditorio[0] = 2;
+												break;
+											}
+
+										} while (confirmacaoLocacao != 2);
+
+										break;
+
+									} else {
+										System.out.println("Titulo da Atividade invalido. Tente novamente");
+										break;
+									}
+								} else {
+									System.out.println("O Auditorio nao esta disponivel.\n");
+
+									break;
+								}
+							}
+
+						} while (escolhaLocacao != 5);
+
+					} else if (logouPesquisador == 1) {
+						System.out.println("\n----------LOCACAO DE RECURSOS----------\n\n");
+						break;
+					} else if (logouAdministrador == 1) {
+						System.out.println("\n----------VERIFICACAO DA LOCACAO DE RECURSOS----------\n\n");
+						break;
+					}
+				} while (escolhaLocacao != 5);
 
 			} else if (escolhaMenu == 4) {
 				int escolhaConsulta = 0;
@@ -597,6 +720,13 @@ public class TelaInicial {
 				System.out.println("Numero de Apresentacoes:" + num_apresentacao);
 				System.out.println("Numero de Atividades em Laboratorio:" + num_laboratorio);
 				System.out.println("");
+
+				for (Auditorio usuario : listaAuditorio) {
+					System.out.println("\nTitulo:" + usuario.getTitulo());
+					System.out.println("\nDescricao:" + usuario.getDescricao());
+					System.out.println("\nMaterial:" + usuario.getMaterial());
+					System.out.println("\nResponsavel:" + emailUsuario);
+				}
 
 				/*
 				 * for (Aluno usuario : listaAlunos){
