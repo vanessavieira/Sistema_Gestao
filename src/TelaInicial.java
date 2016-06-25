@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Calendar;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import Usuarios.Aluno;
 import Usuarios.Professor;
@@ -17,6 +19,32 @@ public class TelaInicial {
 
 	private static Scanner input;
 	private static Scanner scan;
+
+	public static boolean verificacaoData(String data) {
+		SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/2016");
+		dtf.setLenient(false);
+		try {
+			dtf.parse(data);
+		} catch (ParseException e) {
+			System.err.println("Data em formato invalido");
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean verificacaoHora(String hora) {
+		try {
+			Calendar data = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			sdf.setLenient(false);
+			data.setTime(sdf.parse(hora));
+			sdf.parse(hora);
+		} catch (ParseException e) {
+			System.err.println("Data em formato invalido");
+			return false;
+		}
+		return true;
+	}
 
 	public static void main(String[] args) {
 
@@ -51,7 +79,7 @@ public class TelaInicial {
 		Date data = dataAtual.getTime();
 
 		num_usuarios = 1;
-		num_recursos_alocacao = 0;
+		num_recursos_alocacao = 10;
 		num_recursos_alocado = 0;
 		num_recursos_andamento = 0;
 		num_recursos_concluido = 0;
@@ -66,8 +94,9 @@ public class TelaInicial {
 
 		do {
 			data = dataAtual.getTime();
-			System.out.println("Data: " + formatoData.format(data));
-			System.out.println("Hora: " + dataAtual.get(Calendar.HOUR_OF_DAY));
+			// System.out.println("Data: " + formatoData.format(data));
+			// System.out.println("Hora: " +
+			// dataAtual.get(Calendar.HOUR_OF_DAY));
 			System.out.println(
 					"\n\n  ----------SISTEMA DE GESTAO----------\n     ----------DE RECURSOS----------\n      ----------(2016.1)----------\n\n");
 			System.out.println("Escolha uma opcao:");
@@ -127,7 +156,7 @@ public class TelaInicial {
 							}
 
 							if (posicaoAluno == listaAlunos.size()) {
-								System.out.println(
+								System.err.println(
 										"\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
 								break;
 							}
@@ -165,7 +194,7 @@ public class TelaInicial {
 							}
 
 							if (posicaoProfessor == listaProfessores.size()) {
-								System.out.println(
+								System.err.println(
 										"\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
 								break;
 							}
@@ -196,7 +225,7 @@ public class TelaInicial {
 							}
 
 							if (posicaoPesquisador == listaPesquisadores.size()) {
-								System.out.println(
+								System.err.println(
 										"\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
 								break;
 							}
@@ -220,7 +249,7 @@ public class TelaInicial {
 								escolhaLogin = 5;
 								break;
 							} else {
-								System.out.println("Email e/ou senha de administrador incorretos");
+								System.err.println("Email e/ou senha de administrador incorretos");
 							}
 						}
 					} else {
@@ -273,7 +302,7 @@ public class TelaInicial {
 
 							System.out.println("\n----------CADASTRAMENTO DE ALUNO(A)----------\n\n");
 
-							System.out.println("\nNome do Usuario");
+							System.out.println("Nome do Usuario");
 							usuario.setNome(input.nextLine());
 
 							System.out.println("Senha");
@@ -291,7 +320,7 @@ public class TelaInicial {
 
 								for (Aluno alunos : listaAlunos) {
 									if (email.equals(alunos.email) || email.equals("baldoino@ic.ufal.br")) {
-										System.out.println(
+										System.err.println(
 												"Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
 										cadastrado++;
 										break;
@@ -300,7 +329,7 @@ public class TelaInicial {
 
 								for (Professor professores : listaProfessores) {
 									if (email.equals(professores.email) || email.equals("baldoino@ic.ufal.br")) {
-										System.out.println(
+										System.err.println(
 												"Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
 										cadastrado++;
 										break;
@@ -309,7 +338,7 @@ public class TelaInicial {
 
 								for (Pesquisador pesquisadores : listaPesquisadores) {
 									if (email.equals(pesquisadores.email) || email.equals("baldoino@ic.ufal.br")) {
-										System.out.println(
+										System.err.println(
 												"Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
 										cadastrado++;
 										break;
@@ -320,7 +349,7 @@ public class TelaInicial {
 									listaAlunos.add(usuario);
 									num_usuarios++;
 
-									System.out.println("Aluno(a) cadastrado com sucesso!");
+									System.out.println("Aluno(a) cadastrado com sucesso!\n");
 									System.out.println(
 											"Digite 0 para voltar ao menu ou qualquer outro número para cadastrar um novo usuario\n");
 
@@ -336,7 +365,7 @@ public class TelaInicial {
 								}
 
 							} else {
-								System.out.println(
+								System.err.println(
 										"Ops! Um erro ocorreu no cadastro, certifique-se que voce digitou todas as informacoes corretamente!\n");
 								break;
 							}
@@ -351,7 +380,7 @@ public class TelaInicial {
 
 							System.out.println("\n----------CADASTRAMENTO DE PROFESSOR(A)----------\n\n");
 
-							System.out.println("\nNome do Usuario");
+							System.out.println("Nome do Usuario");
 							usuario.setNome(input.nextLine());
 
 							System.out.println("Senha");
@@ -363,7 +392,7 @@ public class TelaInicial {
 
 							for (Aluno alunos : listaAlunos) {
 								if (email.equals(alunos.email) || email.equals("baldoino@ic.ufal.br")) {
-									System.out.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
+									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
 									cadastrado++;
 									break;
 								}
@@ -371,7 +400,7 @@ public class TelaInicial {
 
 							for (Professor professores : listaProfessores) {
 								if (email.equals(professores.email) || email.equals("baldoino@ic.ufal.br")) {
-									System.out.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
+									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
 									cadastrado++;
 									break;
 								}
@@ -379,7 +408,7 @@ public class TelaInicial {
 
 							for (Pesquisador pesquisadores : listaPesquisadores) {
 								if (email.equals(pesquisadores.email) || email.equals("baldoino@ic.ufal.br")) {
-									System.out.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
+									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
 									cadastrado++;
 									break;
 								}
@@ -389,7 +418,7 @@ public class TelaInicial {
 								listaProfessores.add(usuario);
 								num_usuarios++;
 
-								System.out.println("Professor(a) cadastrado com sucesso!");
+								System.out.println("Professor(a) cadastrado com sucesso!\n");
 								System.out.println(
 										"Digite 0 para voltar ao menu ou qualquer outro número para cadastrar um novo usuario\n");
 
@@ -414,7 +443,7 @@ public class TelaInicial {
 
 							System.out.println("\n----------CADASTRAMENTO DE PESQUISADOR(A)----------\n\n");
 
-							System.out.println("\nNome do Usuario");
+							System.out.println("Nome do Usuario");
 							usuario.setNome(input.nextLine());
 
 							System.out.println("Senha");
@@ -426,7 +455,7 @@ public class TelaInicial {
 
 							for (Aluno alunos : listaAlunos) {
 								if (email.equals(alunos.email) || email.equals("baldoino@ic.ufal.br")) {
-									System.out.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
+									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
 									cadastrado++;
 									break;
 								}
@@ -434,7 +463,7 @@ public class TelaInicial {
 
 							for (Professor professores : listaProfessores) {
 								if (email.equals(professores.email) || email.equals("baldoino@ic.ufal.br")) {
-									System.out.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
+									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
 									cadastrado++;
 									break;
 								}
@@ -442,7 +471,7 @@ public class TelaInicial {
 
 							for (Pesquisador pesquisadores : listaPesquisadores) {
 								if (email.equals(pesquisadores.email) || email.equals("baldoino@ic.ufal.br")) {
-									System.out.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
+									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
 									cadastrado++;
 									break;
 								}
@@ -452,7 +481,7 @@ public class TelaInicial {
 								listaPesquisadores.add(usuario);
 								num_usuarios++;
 
-								System.out.println("Pesquisador(a) cadastrado com sucesso!");
+								System.out.println("Pesquisador(a) cadastrado com sucesso!\n");
 								System.out.println(
 										"Digite 0 para voltar ao menu ou qualquer outro número para cadastrar um novo usuario\n");
 
@@ -480,12 +509,12 @@ public class TelaInicial {
 
 				do {
 					if (logouAluno == 0 && logouProfessor == 0 && logouPesquisador == 0 && logouAdministrador == 0) {
-						System.out.println("Voce nao esta logado no Sistema.\n");
+						System.err.println("Voce nao esta logado no Sistema.\n");
 						break;
 					} else if (logouAluno == 1) {
-						System.out.println("Voce nao tem permissao para locar recursos.\n");
+						System.err.println("Voce nao tem permissao para locar recursos.\n");
 						break;
-					} else if (logouProfessor == 1) {	
+					} else if (logouProfessor == 1) {
 						do {
 							System.out.println("\n----------LOCACAO DE RECURSOS----------\n\n");
 							System.out.println("Bem-vindo, Professor(a), que recurso voce deseja locar?");
@@ -521,51 +550,81 @@ public class TelaInicial {
 										System.out.println("Material Utilizado na Atividade:");
 										auditorio1.setMaterial(input.nextLine());
 
+										// verificar se a data eh valida
 										System.out.println("Data de Inicio da Atividade (dd/mm/aaaa):");
 										auditorio1.setDataInicio(input.nextLine());
+										String dataInicio = auditorio1.getDataInicio();
 
-										System.out.println("Data de Termino da Atividade (dd/mm/aaaa):");
-										auditorio1.setDataFinal(input.nextLine());
+										if (verificacaoData(dataInicio) == true) {
+											// verificar se a data eh valida
+											System.out.println("Data de Termino da Atividade (dd/mm/aaaa):");
+											auditorio1.setDataFinal(input.nextLine());
+											String dataFinal = auditorio1.getDataFinal();
 
-										System.out.println("Horario de Inicio (HH mm):");
-										auditorio1.setHoraInicio(input.nextLine());
+											if (verificacaoData(dataFinal) == true) {
 
-										System.out.println("Horario de Termino(HH mm):");
-										auditorio1.setHoraFinal(input.nextLine());
+												// verificar se a hora eh valida
+												System.out.println("Horario de Inicio (HH:mm):");
+												auditorio1.setHoraInicio(input.nextLine());
+												String horaInicial = auditorio1.getHoraInicio();
 
-										auditorio1.responsavel = emailUsuario;
+												if (verificacaoHora(horaInicial) == true) {
 
-										statusAuditorio[0] = 1;
+													// verificar se a hora eh
+													// valida
+													System.out.println("Horario de Termino(HH:mm):");
+													auditorio1.setHoraFinal(input.nextLine());
+													String horaFinal = auditorio1.getHoraFinal();
 
-										do {
-											System.out.println(
-													"\n----------CONFIRMACAO DE LOCACAO DE AUDITORIO----------\n\n");
-											System.out.println("\nTitulo:" + auditorio1.getTitulo());
-											System.out.println("\nDescricao:" + auditorio1.getDescricao());
-											System.out.println("\nMaterial:" + auditorio1.getMaterial());
-											System.out.println("\nData de Inicio:" + auditorio1.getDataInicio());
-											System.out.println("\nData de Termino:" + auditorio1.getDataFinal());
-											System.out.println("\nHora de Inicio:" + auditorio1.getHoraInicio());
-											System.out.println("\nHora de Final:" + auditorio1.getHoraFinal());
-											System.out.println("\nDeseja confimar a locacao do auditorio?");
-											System.out.println("1. Sim");
-											System.out.println("2. Nao");
+													if (verificacaoHora(horaFinal) == true) {
 
-											confirmacaoLocacao = input.nextInt();
-											input.nextLine();
+														auditorio1.responsavel = emailUsuario;
 
-											if (confirmacaoLocacao == 1) {
-												System.out.println(
-														"\n----------CONFIRMACAO DE LOCACAO DE AUDITORIO----------\n\n");
-												System.out.println("Auditorio Confirmado.");
-												statusAuditorio[0] = 2;
-												break;
+														statusAuditorio[0] = 1;
+														num_recursos_alocacao--;
+														num_recursos_alocado++;
+
+														do {
+															System.out.println(
+																	"\n----------CONFIRMACAO DE LOCACAO DE AUDITORIO----------\n\n");
+															System.out.println("\nTitulo:" + auditorio1.getTitulo());
+															System.out.println(
+																	"\nDescricao:" + auditorio1.getDescricao());
+															System.out
+																	.println("\nMaterial:" + auditorio1.getMaterial());
+															System.out.println(
+																	"\nData de Inicio:" + auditorio1.getDataInicio());
+															System.out.println(
+																	"\nData de Termino:" + auditorio1.getDataFinal());
+															System.out.println(
+																	"\nHora de Inicio:" + auditorio1.getHoraInicio());
+															System.out.println(
+																	"\nHora de Final:" + auditorio1.getHoraFinal());
+															System.out.println(
+																	"\nDeseja confimar a locacao do auditorio?");
+															System.out.println("1. Sim");
+															System.out.println("2. Nao");
+
+															confirmacaoLocacao = input.nextInt();
+															input.nextLine();
+
+															if (confirmacaoLocacao == 1) {
+																System.out.println(
+																		"\n----------CONFIRMACAO DE LOCACAO DE AUDITORIO----------\n\n");
+																System.out.println("Auditorio Confirmado.");
+																statusAuditorio[0] = 2;
+																num_recursos_alocado--;
+																num_recursos_andamento++;
+																break;
+															}
+
+														} while (confirmacaoLocacao != 2);
+
+														break;
+													}
+												}
 											}
-
-										} while (confirmacaoLocacao != 2);
-
-										break;
-
+										}
 									} else {
 										System.out.println("Titulo da Atividade invalido. Tente novamente");
 										break;
@@ -621,7 +680,7 @@ public class TelaInicial {
 								Aluno usuario = new Aluno();
 
 								if (listaAlunos.size() == 0) {
-									System.out.println("\nNao existe cadastro de alunos no Sistema.\n");
+									System.err.println("\nNao existe cadastro de alunos no Sistema.\n");
 								} else {
 
 									System.out.println("\n----------CONSULTA POR ALUNO(A)----------\n\n");
@@ -637,7 +696,7 @@ public class TelaInicial {
 											System.out.println("Tipo de Aluno:  " + usuarios.getTipo());
 											System.out.println("E-mail:  " + usuarios.getEmail());
 										} else {
-											System.out.println("\nNao existe cadastro de aluno com tal e-mail.\n");
+											System.err.println("\nNao existe cadastro de aluno com tal e-mail.\n");
 										}
 									}
 								}
@@ -648,7 +707,7 @@ public class TelaInicial {
 								Professor usuario = new Professor();
 
 								if (listaProfessores.size() == 0) {
-									System.out.println("\nNao existe cadastro de professores no Sistema.\n");
+									System.err.println("\nNao existe cadastro de professores no Sistema.\n");
 								} else {
 
 									System.out.println("\n----------CONSULTA POR PROFESSOR(A)----------\n\n");
@@ -663,7 +722,7 @@ public class TelaInicial {
 											System.out.println("\nNome:  " + usuarios.getNome());
 											System.out.println("E-mail:  " + usuarios.getEmail());
 										} else {
-											System.out.println("\nNao existe cadastro de professor com tal e-mail.\n");
+											System.err.println("\nNao existe cadastro de professor com tal e-mail.\n");
 										}
 									}
 								}
@@ -672,7 +731,7 @@ public class TelaInicial {
 
 								Pesquisador usuario = new Pesquisador();
 								if (listaPesquisadores.size() == 0) {
-									System.out.println("\nNao existe cadastro de pesquisadores no Sistema.\n");
+									System.err.println("\nNao existe cadastro de pesquisadores no Sistema.\n");
 								} else {
 
 									System.out.println("\n----------CONSULTA POR PESQUISADOR(A)----------\n\n");
@@ -687,7 +746,7 @@ public class TelaInicial {
 											System.out.println("\nNome:  " + usuarios.getNome());
 											System.out.println("E-mail:  " + usuarios.getEmail());
 										} else {
-											System.out
+											System.err
 													.println("\nNao existe cadastro de pesquisador com tal e-mail.\n");
 										}
 									}
@@ -721,14 +780,14 @@ public class TelaInicial {
 				System.out.println("Numero de Atividades em Laboratorio:" + num_laboratorio);
 				System.out.println("");
 
-				for (Auditorio usuario : listaAuditorio) {
-					System.out.println("\nTitulo:" + usuario.getTitulo());
-					System.out.println("\nDescricao:" + usuario.getDescricao());
-					System.out.println("\nMaterial:" + usuario.getMaterial());
-					System.out.println("\nResponsavel:" + emailUsuario);
-				}
-
 				/*
+				 * for (Auditorio usuario : listaAuditorio) {
+				 * System.out.println("\nTitulo:" + usuario.getTitulo());
+				 * System.out.println("\nDescricao:" + usuario.getDescricao());
+				 * System.out.println("\nMaterial:" + usuario.getMaterial());
+				 * System.out.println("\nResponsavel:" + emailUsuario); }
+				 * 
+				 * 
 				 * for (Aluno usuario : listaAlunos){
 				 * System.out.println(usuario.getNome()); }
 				 */

@@ -1,11 +1,16 @@
 package Usuarios;
 
-public class Aluno {
-	
-	public String tipo;
+import java.util.ArrayList;
+
+import recursos.Recursos;
+
+public class Pessoa {
+
 	public String nome;
 	private String senha;
 	public String email;
+	
+	ArrayList<Recursos> historicoAlocacao = new ArrayList<Recursos>();
 	
 	public String getNome() {
 		return nome;
@@ -30,13 +35,9 @@ public class Aluno {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getTipo() {
-		return tipo;
+	
+	public void adicionarHistoricoAlocacao (Recursos recursos){
+		historicoAlocacao.add(recursos);
 	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
+	
 }
