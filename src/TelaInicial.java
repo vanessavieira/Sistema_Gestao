@@ -50,6 +50,7 @@ public class TelaInicial {
 	public static void main(String[] args) {
 
 		Administrador Baldoino = new Administrador();
+		
 
 		int num_usuarios, num_recursos_alocacao, num_recursos_alocado, num_recursos_andamento, num_recursos_concluido,
 				num_alocacoes, num_aula_tradicional, num_apresentacao, num_laboratorio;
@@ -72,6 +73,9 @@ public class TelaInicial {
 		ArrayList<Laboratorios> listaLaboratorios = new ArrayList<Laboratorios>();
 		ArrayList<Projetores> listaProjetores = new ArrayList<Projetores>();
 		ArrayList<Salas> listaSalas = new ArrayList<Salas>();
+		
+
+		Auditorio auditorio1 = new Auditorio();
 
 		Calendar dataAtual = Calendar.getInstance();
 		dataAtual.set(2016, Calendar.JUNE, 29);
@@ -509,7 +513,6 @@ public class TelaInicial {
 			} else if (escolhaMenu == 3) {
 				int escolhaLocacao = 0;
 				int confirmacaoLocacao = 0;
-				Auditorio auditorio1 = new Auditorio();
 
 				do {
 					if (logouAluno == 0 && logouProfessor == 0 && logouPesquisador == 0 && logouAdministrador == 0) {
@@ -576,7 +579,7 @@ public class TelaInicial {
 														System.out.println(
 																"\nStatus: de 'Em processo de alocacao' para 'alocado'");
 
-														auditorio1.responsavel = emailUsuario;
+														auditorio1.setResponsavel(emailUsuario);
 
 														statusAuditorio[0] = 1;
 														num_recursos_alocacao--;
@@ -653,15 +656,19 @@ public class TelaInicial {
 
 									System.out.println("Material Utilizado na Atividade:");
 									auditorio1.setMaterial(input.nextLine());
-
-									System.out.println("\nIdentificacao: " + auditorio1.getIdentidade());
-									System.out.println("\nTitulo: " + auditorio1.getTitulo());
-									System.out.println("\nDescricao: " + auditorio1.getDescricao());
-									System.out.println("\nMaterial: " + auditorio1.getMaterial());
-									System.out.println("\nData de Inicio: " + auditorio1.getDataInicio());
-									System.out.println("\nData de Termino: " + auditorio1.getDataFinal());
-									System.out.println("\nHora de Inicio: " + auditorio1.getHoraInicio());
-									System.out.println("\nHora de Final: " + auditorio1.getHoraFinal());
+									
+									listaAuditorio.add(auditorio1);
+									
+									for (Auditorio top : listaAuditorio){
+										System.out.println("\nIdentificacao: " + top.getIdentidade());
+										System.out.println("\nTitulo: " + top.getTitulo());
+										System.out.println("\nDescricao: " + top.getDescricao());
+										System.out.println("\nMaterial: " + top.getMaterial());
+										System.out.println("\nData de Inicio: " + top.getDataInicio());
+										System.out.println("\nData de Termino: " + top.getDataFinal());
+										System.out.println("\nHora de Inicio: " + top.getHoraInicio());
+										System.out.println("\nHora de Final: " + top.getHoraFinal());
+									}
 									System.out.println("\nDeseja confimar a locacao do auditorio?");
 									System.out.println("1. Sim");
 									System.out.println("2. Nao");
@@ -748,6 +755,119 @@ public class TelaInicial {
 											System.err.println("\nNao existe cadastro de aluno com tal e-mail.\n");
 										}
 									}
+								}
+
+							} else if (escolhaConsulta1 == 2) {
+								scan = new Scanner(System.in);
+
+								Professor usuario = new Professor();
+
+								if (listaProfessores.size() == 0) {
+									System.err.println("\nNao existe cadastro de professores no Sistema.\n");
+								} else {
+
+									System.out.println("\n----------CONSULTA POR PROFESSOR(A)----------\n\n");
+									System.out.println(
+											"Digite o Email do(a) professor(a) para obter informacoes sobre ele(a):");
+
+									usuario.setEmail(input.nextLine());
+									String email = usuario.getEmail();
+
+									for (Professor usuarios : listaProfessores) {
+										if (email.equals(usuarios.getEmail())) {
+											if (locouProfessor == 1) {
+												System.out.println("\nNome:  " + usuarios.getNome());
+												System.out.println("E-mail:  " + usuarios.getEmail());
+												System.out.println("Recurso Alocado:  " + usuarios.getAlocou());
+												System.out.println("Atividade Realizada:  " + usuarios.getAtividade());
+
+											} else {
+												System.out.println("\nNome:  " + usuarios.getNome());
+												System.out.println("E-mail:  " + usuarios.getEmail());
+											}
+										} else {
+											System.err.println("\nNao existe cadastro de professor com tal e-mail.\n");
+										}
+									}
+								}
+							} else if (escolhaConsulta1 == 3) {
+								scan = new Scanner(System.in);
+
+								Pesquisador usuario = new Pesquisador();
+								if (listaPesquisadores.size() == 0) {
+									System.err.println("\nNao existe cadastro de pesquisadores no Sistema.\n");
+								} else {
+
+									System.out.println("\n----------CONSULTA POR PESQUISADOR(A)----------\n\n");
+									System.out.println(
+											"Digite o Email do(a) pesquisador(a) para obter informacoes sobre ele(a):");
+
+									usuario.setEmail(input.nextLine());
+									String email = usuario.getEmail();
+
+									for (Pesquisador usuarios : listaPesquisadores) {
+										if (email.equals(usuarios.getEmail())) {
+											System.out.println("\nNome:  " + usuarios.getNome());
+											System.out.println("E-mail:  " + usuarios.getEmail());
+										} else {
+											System.err
+													.println("\nNao existe cadastro de pesquisador com tal e-mail.\n");
+										}
+									}
+								}
+							} else if (escolhaConsulta1 == 4) {
+								// administrador
+								System.out.println("\nNome:  Baldoino Fonseca");
+								System.out.println("\nE-mail:  baldoino@ic.ufal.br");
+							} else if (escolhaConsulta1 == 5) {
+								escolhaConsulta = 3;
+								break;
+							}
+
+						} while (escolhaConsulta != 5);
+					} else if (escolhaConsulta == 2) {
+						int escolhaConsulta1 = 0;
+						do {
+							System.out.println("\n----------CONSULTA----------\n\n");
+							System.out.println("Escolha o Tipo de Recurso:");
+							System.out.println("1. Auditorio");
+							System.out.println("2. Laboratorios");
+							System.out.println("3. Projetores");
+							System.out.println("4. Salas");
+							System.out.println("5. Voltar ao Menu");
+
+							escolhaConsulta1 = input.nextInt();
+							input.nextLine();
+
+							if (escolhaConsulta1 == 1) {
+								Auditorio auditorio = new Auditorio();
+
+								if (listaAuditorio.size() == 0) {
+									System.err.println("\nNenhuma atividade foi realizada no Auditorio.\n");
+								} else {
+									System.out.println("\n----------CONSULTA POR AUDITORIO----------\n\n");
+									System.out.println("digite a identificacao do recurso: ");
+									auditorio.setIdentidade(input.nextLine());
+									String identificacao = auditorio.getIdentidade();
+
+									for (Auditorio usuarios : listaAuditorio) {
+										if (identificacao.equals(usuarios.getIdentidade())) {
+											System.out.println("Nome do responsavel:  " + auditorio.getResponsavel());
+											System.out.println("Recurso:  " + auditorio.getIdentidade());
+											System.out.println("Atividade realizada:  " + auditorio.getTitulo());
+											System.out.println("Descricao da atividade:  " + auditorio.getDescricao());
+											System.out.println("Material utilizado:  " + auditorio.getMaterial());
+											System.out.println("Atividade realizada:  " + auditorio.getTitulo());
+											System.out.println("Data de inicio:  " + auditorio.getDataInicio());
+											System.out.println("Data de termino:  " + auditorio.getDataFinal());
+											System.out.println("Horario de inicio:  " + auditorio.getHoraInicio());
+											System.out.println("Horario de termino:  " + auditorio.getHoraFinal());
+
+										} else {
+											System.err
+													.println("\nNao existe cadastro de recurso com tal identificacao.\n");
+										}
+									}			
 								}
 
 							} else if (escolhaConsulta1 == 2) {

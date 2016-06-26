@@ -1,10 +1,10 @@
 package recursos;
 
 public class Recursos {
-	private String identidade;
-	private String titulo;
-	private String descricao;
-	private String material;
+	public String identidade;
+	public String titulo;
+	public String descricao;
+	public String material;
 	public String responsavel;
 	public String dataInicio;
 	public String dataFinal;
