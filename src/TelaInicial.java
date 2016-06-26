@@ -53,7 +53,7 @@ public class TelaInicial {
 
 		int num_usuarios, num_recursos_alocacao, num_recursos_alocado, num_recursos_andamento, num_recursos_concluido,
 				num_alocacoes, num_aula_tradicional, num_apresentacao, num_laboratorio;
-		int escolhaMenu, cadastrado, locou;
+		int escolhaMenu, cadastrado, locouProfessor, locouPesquisador, locouAdministrador;
 		int logouAluno, logouProfessor, logouPesquisador, logouAdministrador;
 		int[] statusAuditorio = { 0 };
 		int[] statusLaboratorio = { 0, 0, 0 };
@@ -92,7 +92,9 @@ public class TelaInicial {
 		logouProfessor = 0;
 		logouPesquisador = 0;
 		logouAdministrador = 0;
-		locou = 0;
+		locouProfessor = 0;
+		locouPesquisador = 0;
+		locouAdministrador = 0;
 
 		do {
 			data = dataAtual.getTime();
@@ -516,7 +518,7 @@ public class TelaInicial {
 					} else if (logouAluno == 1) {
 						System.err.println("Voce nao tem permissao para locar recursos.\n");
 						break;
-					} else if (logouProfessor == 1 && locou == 0) {
+					} else if (logouProfessor == 1 && locouProfessor == 0) {
 						do {
 							System.out.println("\n----------LOCACAO DE RECURSOS----------\n\n");
 							System.out.println("Bem-vindo, Professor(a), que recurso voce deseja locar?");
@@ -579,7 +581,7 @@ public class TelaInicial {
 														statusAuditorio[0] = 1;
 														num_recursos_alocacao--;
 														num_recursos_alocado++;
-														locou++;
+														locouProfessor++;
 
 														break;
 													}
@@ -587,11 +589,11 @@ public class TelaInicial {
 											}
 										}
 									} else {
-										System.out.println("Titulo da Atividade invalido. Tente novamente");
+										System.err.println("Titulo da Atividade invalido. Tente novamente");
 										break;
 									}
 								} else {
-									System.out.println("O Auditorio nao esta disponivel.\n");
+									System.err.println("O Auditorio nao esta disponivel.\n");
 
 									break;
 								}
@@ -599,7 +601,7 @@ public class TelaInicial {
 
 						} while (escolhaLocacao != 5);
 
-					} else if (logouPesquisador == 1 && locou == 0) {
+					} else if (logouPesquisador == 1 && locouPesquisador == 0) {
 						System.out.println("\n----------LOCACAO DE RECURSOS----------\n\n");
 						break;
 					} else if (logouAdministrador == 1) {
@@ -620,11 +622,11 @@ public class TelaInicial {
 								num_recursos_concluido++;
 								statusAuditorio[0] = 3;
 								break;
-							} else if (escolhaAdministrador == 2){
+							} else if (escolhaAdministrador == 2) {
 								break;
 							}
 						}
-					} else if (logouProfessor == 1 && locou == 1) {
+					} else if (logouProfessor == 1 && locouProfessor == 1) {
 						if (statusAuditorio[0] == 1) {
 							do {
 								System.out.println("\n----------CONFIRMACAO DE LOCACAO DE AUDITORIO----------\n\n");
@@ -637,6 +639,14 @@ public class TelaInicial {
 
 								if (titulo.equals("aula tradicional") || titulo.equals("apresentacoes")
 										|| titulo.equals("laboratorio")) {
+
+									for (Professor professores : listaProfessores) {
+										if (emailUsuario.equals(professores.email)) {
+											professores.setAlocou("auditorio 1");
+											professores.setAtividade(auditorio1.getTitulo());
+											break;
+										}
+									}
 
 									System.out.println("Descricao da Atividade:");
 									auditorio1.setDescricao(input.nextLine());
@@ -655,6 +665,14 @@ public class TelaInicial {
 									System.out.println("\nDeseja confimar a locacao do auditorio?");
 									System.out.println("1. Sim");
 									System.out.println("2. Nao");
+
+									if (titulo.equals("aula tradicional")) {
+										num_aula_tradicional++;
+									} else if (titulo.equals("apresentacoes")) {
+										num_apresentacao++;
+									} else if (titulo.equals("laboratorio")) {
+										num_laboratorio++;
+									}
 
 									confirmacaoLocacao = input.nextInt();
 									input.nextLine();
@@ -750,8 +768,16 @@ public class TelaInicial {
 
 									for (Professor usuarios : listaProfessores) {
 										if (email.equals(usuarios.getEmail())) {
-											System.out.println("\nNome:  " + usuarios.getNome());
-											System.out.println("E-mail:  " + usuarios.getEmail());
+											if (locouProfessor == 1) {
+												System.out.println("\nNome:  " + usuarios.getNome());
+												System.out.println("E-mail:  " + usuarios.getEmail());
+												System.out.println("Recurso Alocado:  " + usuarios.getAlocou());
+												System.out.println("Atividade Realizada:  " + usuarios.getAtividade());
+
+											} else {
+												System.out.println("\nNome:  " + usuarios.getNome());
+												System.out.println("E-mail:  " + usuarios.getEmail());
+											}
 										} else {
 											System.err.println("\nNao existe cadastro de professor com tal e-mail.\n");
 										}
@@ -797,8 +823,7 @@ public class TelaInicial {
 				} while (escolhaConsulta != 3);
 
 			} else if (escolhaMenu == 5) {
-				num_alocacoes = num_recursos_alocado + num_recursos_andamento
-						+ num_recursos_concluido;
+				num_alocacoes = num_recursos_alocado + num_recursos_andamento + num_recursos_concluido;
 				System.out.println("\n----------RELATORIO ATUAL----------\n\n");
 				System.out.println("Numero de Usuarios:" + num_usuarios);
 				System.out.println("Numero de Recursos em Processo de Alocacao:" + num_recursos_alocacao);

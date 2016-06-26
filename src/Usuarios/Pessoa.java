@@ -6,6 +6,7 @@ public class Pessoa {
 	private String senha;
 	public String email;
 	public String alocou;
+	public String atividade;
 	
 	public String getNome() {
 		return nome;
@@ -38,5 +39,11 @@ public class Pessoa {
 	public void setAlocou(String alocou) {
 		this.alocou = alocou;
 	}
-	
+	public String getAtividade() {
+		return atividade;
+	}
+
+	public void setAtividade(String atividade) {
+		this.atividade = atividade;
+	}
 }
