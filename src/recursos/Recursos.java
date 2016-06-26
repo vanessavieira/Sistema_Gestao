@@ -10,59 +10,76 @@ public class Recursos {
 	public String dataFinal;
 	public String horaInicio;
 	public String horaFinal;
-	
-	public String getIdentidade(){
+
+	public String getIdentidade() {
 		return identidade;
 	}
-	public void setIdentidade(String identidade){
+
+	public void setIdentidade(String identidade) {
 		this.identidade = identidade;
 	}
-	public String getTitulo(){
+
+	public String getTitulo() {
 		return titulo;
 	}
-	public void setTitulo(String titulo){
+
+	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getDescricao(){
+
+	public String getDescricao() {
 		return descricao;
 	}
-	public void setDescricao(String descricao){
+
+	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getMaterial(){
+
+	public String getMaterial() {
 		return material;
 	}
-	public void setMaterial(String material){
+
+	public void setMaterial(String material) {
 		this.material = material;
 	}
-	public String getResponsavel(){
+
+	public String getResponsavel() {
 		return responsavel;
 	}
-	public void setResponsavel(String responsavel){
+
+	public void setResponsavel(String responsavel) {
 		this.responsavel = responsavel;
 	}
-	public String getDataInicio(){
+
+	public String getDataInicio() {
 		return dataInicio;
 	}
-	public void setDataInicio(String dataInicio){
+
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
-	public String getDataFinal(){
+
+	public String getDataFinal() {
 		return dataFinal;
 	}
-	public void setDataFinal(String dataFinal){
+
+	public void setDataFinal(String dataFinal) {
 		this.dataFinal = dataFinal;
 	}
-	public String getHoraInicio(){
+
+	public String getHoraInicio() {
 		return horaInicio;
 	}
-	public void setHoraInicio(String horaInicio){
+
+	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
 	}
-	public String getHoraFinal(){
+
+	public String getHoraFinal() {
 		return horaFinal;
 	}
-	public void setHoraFinal(String horaFinal){
+
+	public void setHoraFinal(String horaFinal) {
 		this.horaFinal = horaFinal;
 	}
 

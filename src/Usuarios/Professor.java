@@ -1,5 +1,5 @@
 package Usuarios;
 
-public class Professor extends Pessoa{
-	
+public class Professor extends Pessoa {
+
 }

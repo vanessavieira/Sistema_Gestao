@@ -1,12 +1,12 @@
 package Usuarios;
 
 public class Aluno {
-	
+
 	public String tipo;
 	public String nome;
 	private String senha;
 	public String email;
-	
+
 	public String getNome() {
 		return nome;
 	}
