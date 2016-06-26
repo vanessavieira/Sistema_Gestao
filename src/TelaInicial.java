@@ -570,8 +570,9 @@ public class TelaInicial {
 													String horaFinal = auditorio1.getHoraFinal();
 
 													if (verificacaoHora(horaFinal) == true) {
-														
-													System.out.println("\nStatus: de 'Em processo de alocacao' para 'alocado'");
+
+														System.out.println(
+																"\nStatus: de 'Em processo de alocacao' para 'alocado'");
 
 														auditorio1.responsavel = emailUsuario;
 
@@ -601,9 +602,28 @@ public class TelaInicial {
 					} else if (logouPesquisador == 1 && locou == 0) {
 						System.out.println("\n----------LOCACAO DE RECURSOS----------\n\n");
 						break;
-					} else if (logouAdministrador == 1 && locou == 0) {
-						System.out.println("\n----------VERIFICACAO DA LOCACAO DE RECURSOS----------\n\n");
-						break;
+					} else if (logouAdministrador == 1) {
+						int escolhaAdministrador;
+						if (statusAuditorio[0] == 2) {
+							System.out.println("\n----------VERIFICACAO DA LOCACAO DE RECURSOS----------\n\n");
+							System.out.println("Deseja alterar o Status de alocacao do Auditorio 1 para 'concluido'?");
+							System.out.println("1. Sim");
+							System.out.println("2. Nao");
+
+							escolhaAdministrador = input.nextInt();
+							input.nextLine();
+
+							if (escolhaAdministrador == 1) {
+								System.out.println("\n----------VERIFICACAO DA LOCACAO DE RECURSOS----------\n\n");
+								System.out.println("Status: 'concluido'");
+								num_recursos_alocado--;
+								num_recursos_concluido++;
+								statusAuditorio[0] = 3;
+								break;
+							} else if (escolhaAdministrador == 2){
+								break;
+							}
+						}
 					} else if (logouProfessor == 1 && locou == 1) {
 						if (statusAuditorio[0] == 1) {
 							do {
@@ -623,8 +643,8 @@ public class TelaInicial {
 
 									System.out.println("Material Utilizado na Atividade:");
 									auditorio1.setMaterial(input.nextLine());
-									
-									System.out.println("\nIdentificacao: "+ auditorio1.getIdentidade());
+
+									System.out.println("\nIdentificacao: " + auditorio1.getIdentidade());
 									System.out.println("\nTitulo: " + auditorio1.getTitulo());
 									System.out.println("\nDescricao: " + auditorio1.getDescricao());
 									System.out.println("\nMaterial: " + auditorio1.getMaterial());
@@ -644,6 +664,8 @@ public class TelaInicial {
 												"\n----------CONFIRMACAO DE LOCACAO DE AUDITORIO----------\n\n");
 										System.out.println("\nStatus: de 'alocado' para 'em andamento'");
 										System.out.println("Auditorio Confirmado.");
+										System.out.println(
+												"O Status so constara como 'concluido' com a permissao do Administrador do Sistema.");
 										statusAuditorio[0] = 2;
 										num_recursos_alocado--;
 										num_recursos_andamento++;
@@ -775,7 +797,7 @@ public class TelaInicial {
 				} while (escolhaConsulta != 3);
 
 			} else if (escolhaMenu == 5) {
-				num_alocacoes = num_recursos_alocacao + num_recursos_alocado + num_recursos_andamento
+				num_alocacoes = num_recursos_alocado + num_recursos_andamento
 						+ num_recursos_concluido;
 				System.out.println("\n----------RELATORIO ATUAL----------\n\n");
 				System.out.println("Numero de Usuarios:" + num_usuarios);
@@ -803,5 +825,4 @@ public class TelaInicial {
 			}
 		} while (escolhaMenu != 6);
 	}
-
 }
