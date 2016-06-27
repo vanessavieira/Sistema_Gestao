@@ -97,7 +97,7 @@ public class TelaInicial {
 		locouAdministrador = 0;
 
 		do {
-			data = dataAtual.getTime();
+			// data = dataAtual.getTime();
 			// System.out.println("Data: " + formatoData.format(data));
 			// System.out.println("Hora: " +
 			// dataAtual.get(Calendar.HOUR_OF_DAY));
@@ -113,13 +113,11 @@ public class TelaInicial {
 
 			input = new Scanner(System.in);
 			escolhaMenu = input.nextInt();
-
 			input.nextLine();
 
 			if (escolhaMenu == 1) {
 				int escolhaLogin = 0;
 				int escolhaLogout = 0;
-
 				do {
 					if (logouAluno == 0 && logouProfessor == 0 && logouPesquisador == 0 && logouAdministrador == 0) {
 						System.out.println("\n----------LOGIN----------\n\n");
@@ -129,7 +127,6 @@ public class TelaInicial {
 						System.out.println("3. Pesquisador");
 						System.out.println("4. Administrador");
 						System.out.println("5. Voltar ao Menu");
-
 						escolhaLogin = input.nextInt();
 						input.nextLine();
 
@@ -139,7 +136,6 @@ public class TelaInicial {
 							int posicaoAluno = 0;
 
 							System.out.println("\n----------LOGIN DE ALUNO(A)----------\n\n");
-
 							System.out.println("Email do Aluno(a):");
 							usuario.setEmail(input.nextLine());
 							emailUsuario = usuario.getEmail();
@@ -164,14 +160,12 @@ public class TelaInicial {
 										"\nEmail e/ou senha incorretos. (Certifique-se de que voce esta cadastrado no Sistema).\n\n");
 								break;
 							}
-
 						} else if (escolhaLogin == 2) {
 							scan = new Scanner(System.in);
 							Professor usuario = new Professor();
 							int posicaoProfessor = 0;
 
 							System.out.println("\n----------LOGIN DE PROFESSOR(A)----------\n\n");
-
 							System.out.println("Email do Professor(a):");
 							usuario.setEmail(input.nextLine());
 							emailUsuario = usuario.getEmail();
@@ -202,7 +196,6 @@ public class TelaInicial {
 							int posicaoPesquisador = 0;
 
 							System.out.println("\n----------LOGIN DE PESQUISADOR(A)----------\n\n");
-
 							System.out.println("Email do Pesquisador(a):");
 							usuario.setEmail(input.nextLine());
 							emailUsuario = usuario.getEmail();
@@ -232,7 +225,6 @@ public class TelaInicial {
 							Administrador usuario = new Administrador();
 
 							System.out.println("\n----------LOGIN DE ADMINISTRADOR----------\n\n");
-
 							System.out.println("Email do Administrador:");
 							usuario.setEmail(input.nextLine());
 							emailUsuario = usuario.getEmail();
@@ -256,7 +248,6 @@ public class TelaInicial {
 						System.out.println("Deseja desconectar dessa conta?");
 						System.out.println("1. Sim");
 						System.out.println("2. Nao");
-
 						escolhaLogout = input.nextInt();
 						input.nextLine();
 
@@ -276,7 +267,6 @@ public class TelaInicial {
 						}
 					}
 				} while (escolhaLogin != 5);
-
 			} else if (escolhaMenu == 2) {
 				int escolhaCadastro = 0;
 				do {
@@ -286,27 +276,22 @@ public class TelaInicial {
 					System.out.println("2. Professor");
 					System.out.println("3. Pesquisador");
 					System.out.println("4. Voltar ao Menu");
-
 					escolhaCadastro = input.nextInt();
 					input.nextLine();
 
 					if (escolhaCadastro == 1) {
-
 						while (escolhaCadastro != 0) {
-
 							scan = new Scanner(System.in);
-
 							Aluno usuario = new Aluno();
 
 							System.out.println("\n----------CADASTRAMENTO DE ALUNO(A)----------\n\n");
-
-							System.out.println("Nome do Usuario");
+							System.out.println("Nome do Usuario:");
 							usuario.setNome(input.nextLine());
 
-							System.out.println("Senha");
+							System.out.println("Senha:");
 							usuario.setSenha(input.nextLine());
 
-							System.out.println("Email");
+							System.out.println("Email:");
 							usuario.setEmail(input.nextLine());
 							String email = usuario.getEmail();
 
@@ -315,7 +300,6 @@ public class TelaInicial {
 							String tipo = usuario.getTipo();
 
 							if (tipo.equals("graduacao") || tipo.equals("mestrado") || tipo.equals("doutorado")) {
-
 								for (Aluno alunos : listaAlunos) {
 									if (email.equals(alunos.email) || email.equals("baldoino@ic.ufal.br")) {
 										System.err.println(
@@ -324,7 +308,6 @@ public class TelaInicial {
 										break;
 									}
 								}
-
 								for (Professor professores : listaProfessores) {
 									if (email.equals(professores.email) || email.equals("baldoino@ic.ufal.br")) {
 										System.err.println(
@@ -333,7 +316,6 @@ public class TelaInicial {
 										break;
 									}
 								}
-
 								for (Pesquisador pesquisadores : listaPesquisadores) {
 									if (email.equals(pesquisadores.email) || email.equals("baldoino@ic.ufal.br")) {
 										System.err.println(
@@ -350,7 +332,6 @@ public class TelaInicial {
 									System.out.println("Aluno(a) cadastrado com sucesso!\n");
 									System.out.println(
 											"Digite 0 para voltar ao menu ou qualquer outro número para cadastrar um novo usuario\n");
-
 									escolhaCadastro = input.nextInt();
 									input.nextLine();
 
@@ -361,7 +342,6 @@ public class TelaInicial {
 									cadastrado--;
 									break;
 								}
-
 							} else {
 								System.err.println(
 										"Ops! Um erro ocorreu no cadastro, certifique-se que voce digitou todas as informacoes corretamente!\n");
@@ -369,22 +349,18 @@ public class TelaInicial {
 							}
 						}
 					} else if (escolhaCadastro == 2) {
-
 						while (escolhaCadastro != 0) {
-
 							scan = new Scanner(System.in);
-
 							Professor usuario = new Professor();
 
 							System.out.println("\n----------CADASTRAMENTO DE PROFESSOR(A)----------\n\n");
-
-							System.out.println("Nome do Usuario");
+							System.out.println("Nome do Usuario:");
 							usuario.setNome(input.nextLine());
 
-							System.out.println("Senha");
+							System.out.println("Senha:");
 							usuario.setSenha(input.nextLine());
 
-							System.out.println("Email");
+							System.out.println("Email:");
 							usuario.setEmail(input.nextLine());
 							String email = usuario.getEmail();
 
@@ -395,7 +371,6 @@ public class TelaInicial {
 									break;
 								}
 							}
-
 							for (Professor professores : listaProfessores) {
 								if (email.equals(professores.email) || email.equals("baldoino@ic.ufal.br")) {
 									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
@@ -403,7 +378,6 @@ public class TelaInicial {
 									break;
 								}
 							}
-
 							for (Pesquisador pesquisadores : listaPesquisadores) {
 								if (email.equals(pesquisadores.email) || email.equals("baldoino@ic.ufal.br")) {
 									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
@@ -419,7 +393,6 @@ public class TelaInicial {
 								System.out.println("Professor(a) cadastrado com sucesso!\n");
 								System.out.println(
 										"Digite 0 para voltar ao menu ou qualquer outro número para cadastrar um novo usuario\n");
-
 								escolhaCadastro = input.nextInt();
 								input.nextLine();
 
@@ -432,22 +405,18 @@ public class TelaInicial {
 							}
 						}
 					} else if (escolhaCadastro == 3) {
-
 						while (escolhaCadastro != 0) {
-
 							scan = new Scanner(System.in);
-
 							Pesquisador usuario = new Pesquisador();
 
 							System.out.println("\n----------CADASTRAMENTO DE PESQUISADOR(A)----------\n\n");
-
-							System.out.println("Nome do Usuario");
+							System.out.println("Nome do Usuario:");
 							usuario.setNome(input.nextLine());
 
-							System.out.println("Senha");
+							System.out.println("Senha:");
 							usuario.setSenha(input.nextLine());
 
-							System.out.println("Email");
+							System.out.println("Email:");
 							usuario.setEmail(input.nextLine());
 							String email = usuario.getEmail();
 
@@ -458,7 +427,6 @@ public class TelaInicial {
 									break;
 								}
 							}
-
 							for (Professor professores : listaProfessores) {
 								if (email.equals(professores.email) || email.equals("baldoino@ic.ufal.br")) {
 									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
@@ -466,7 +434,6 @@ public class TelaInicial {
 									break;
 								}
 							}
-
 							for (Pesquisador pesquisadores : listaPesquisadores) {
 								if (email.equals(pesquisadores.email) || email.equals("baldoino@ic.ufal.br")) {
 									System.err.println("Esse e-mail ja esta cadastrado. Cadastre um usuario valido.\n");
@@ -482,7 +449,6 @@ public class TelaInicial {
 								System.out.println("Pesquisador(a) cadastrado com sucesso!\n");
 								System.out.println(
 										"Digite 0 para voltar ao menu ou qualquer outro número para cadastrar um novo usuario\n");
-
 								escolhaCadastro = input.nextInt();
 								input.nextLine();
 
@@ -499,21 +465,59 @@ public class TelaInicial {
 					}
 
 				} while (escolhaCadastro != 0);
-
 			} else if (escolhaMenu == 3) {
 				Auditorio auditorio1 = new Auditorio();
 				Laboratorios laboratorio = new Laboratorios();
+				Projetores projetor = new Projetores();
+				Salas sala = new Salas();
+				
 				int escolhaLocacao = 0;
 				int confirmacaoLocacao = 0;
+				int podeAlocar = 1;
 
 				do {
-					if (logouAluno == 0 && logouProfessor == 0 && logouPesquisador == 0 && logouAdministrador == 0) {
+					for (Professor professores : listaProfessores) {
+						if (professores.getEmail().equals(emailUsuario)) {
+							if (professores.getAlocou() == null) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("auditorio 1") && statusAuditorio[0] == 3) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("laboratorio 1") && statusLaboratorio[0] == 3) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("laboratorio 2") && statusLaboratorio[1] == 3) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("laboratorio 3") && statusLaboratorio[2] == 3) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("projetor 1") && statusProjetor[0] == 3) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("projetor 2") && statusProjetor[1] == 3) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("projetor 3") && statusProjetor[2] == 3) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("sala 1") && statusSala[0] == 3) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("sala 2") && statusSala[1] == 3) {
+								podeAlocar = 0;
+							} else if (professores.getAlocou().equals("sala 3") && statusSala[2] == 3) {
+								podeAlocar = 0;
+							}
+						}
+					}
+
+					if (podeAlocar == 1 && logouProfessor == 1) {
+						System.err.println("Voce ja esta com um Recurso em andamento.");
+						break;
+					} else if (podeAlocar == 1 && logouPesquisador == 1) {
+						System.err.println("Voce ja esta com um Recurso em andamento.");
+						break;
+					} else if (logouAluno == 0 && logouProfessor == 0 && logouPesquisador == 0
+							&& logouAdministrador == 0) {
 						System.err.println("Voce nao esta logado no Sistema.\n");
 						break;
 					} else if (logouAluno == 1) {
 						System.err.println("Voce nao tem permissao para locar recursos.\n");
 						break;
-					} else if (logouProfessor == 1 && locouProfessor == 0) {
+					} else if (logouProfessor == 1 && locouProfessor == 0 && podeAlocar == 0) {
 						do {
 							System.out.println("\n----------LOCACAO DE RECURSOS----------\n\n");
 							System.out.println("Bem-vindo, Professor(a), que recurso voce deseja locar?");
@@ -522,7 +526,6 @@ public class TelaInicial {
 							System.out.println("3. Projetor");
 							System.out.println("4. Sala");
 							System.out.println("5. Voltar ao Menu");
-
 							escolhaLocacao = input.nextInt();
 							input.nextLine();
 
@@ -530,12 +533,9 @@ public class TelaInicial {
 								scan = new Scanner(System.in);
 
 								if (statusAuditorio[0] == 0) {
-
 									System.out.println("\n----------LOCACAO DE AUDITORIO----------\n\n");
 									System.out.println("Informacoes basicas\n");
-
 									System.out.println("Identificacao do Recurso (auditorio 1):");
-
 									auditorio1.setIdentidade(input.nextLine());
 									String identidade = auditorio1.getIdentidade();
 
@@ -552,14 +552,12 @@ public class TelaInicial {
 											String dataFinal = auditorio1.getDataFinal();
 
 											if (verificacaoData(dataFinal) == true) {
-
 												// verificar se a hora eh valida
 												System.out.println("Horario de Inicio (HH:mm):");
 												auditorio1.setHoraInicio(input.nextLine());
 												String horaInicial = auditorio1.getHoraInicio();
 
 												if (verificacaoHora(horaInicial) == true) {
-
 													// verificar se a hora eh
 													// valida
 													System.out.println("Horario de Termino(HH:mm):");
@@ -567,7 +565,6 @@ public class TelaInicial {
 													String horaFinal = auditorio1.getHoraFinal();
 
 													if (verificacaoHora(horaFinal) == true) {
-
 														System.out.println(
 																"\nStatus: de 'Em processo de alocacao' para 'alocado'");
 
@@ -577,7 +574,6 @@ public class TelaInicial {
 														num_recursos_alocacao--;
 														num_recursos_alocado++;
 														locouProfessor++;
-
 														break;
 													}
 												}
@@ -587,94 +583,240 @@ public class TelaInicial {
 										System.err.println("Titulo da Atividade invalido. Tente novamente");
 										break;
 									}
-								} else {
+								} else if (statusAuditorio[0] != 0) {
 									System.err.println("O Auditorio nao esta disponivel.\n");
-
 									break;
 								}
-							} else if (statusLaboratorio[0] == 0 && statusLaboratorio[1] == 0
-									&& statusLaboratorio[2] == 0) {
+							} else if (escolhaLocacao == 2) {
+								if (statusLaboratorio[0] == 0 && statusLaboratorio[1] == 0
+										&& statusLaboratorio[2] == 0) {
+									System.out.println("\n----------LOCACAO DE LABORATORIO----------\n\n");
+									System.out.println("Informacoes basicas\n");
+									System.out.println(
+											"Identificacao do Recurso (laboratorio 1, laboratorio 2, laboratorio 3):");
 
-								System.out.println("\n----------LOCACAO DE LABORATORIO----------\n\n");
-								System.out.println("Informacoes basicas\n");
+									laboratorio.setIdentidade(input.nextLine());
+									String identidade = laboratorio.getIdentidade();
 
-								System.out.println(
-										"Identificacao do Recurso (laboratorio 1, laboratorio 2, laboratorio 3):");
-
-								laboratorio.setIdentidade(input.nextLine());
-								String identidade = laboratorio.getIdentidade();
-
-								if (identidade.equals("laboratorio 1") || identidade.equals("laboratorio 2")
-										|| identidade.equals("laboratorio 3")) {
-									// verificar se a data eh valida
-									System.out.println("Data de Inicio da Atividade (dd/mm/aaaa):");
-									laboratorio.setDataInicio(input.nextLine());
-									String dataInicio = laboratorio.getDataInicio();
-
-									if (verificacaoData(dataInicio) == true) {
+									if (identidade.equals("laboratorio 1") || identidade.equals("laboratorio 2")
+											|| identidade.equals("laboratorio 3")) {
 										// verificar se a data eh valida
-										System.out.println("Data de Termino da Atividade (dd/mm/aaaa):");
-										laboratorio.setDataFinal(input.nextLine());
-										String dataFinal = laboratorio.getDataFinal();
+										System.out.println("Data de Inicio da Atividade (dd/mm/aaaa):");
+										laboratorio.setDataInicio(input.nextLine());
+										String dataInicio = laboratorio.getDataInicio();
 
-										if (verificacaoData(dataFinal) == true) {
-											// verificar se a hora eh valida
-											System.out.println("Horario de Inicio (HH:mm):");
-											laboratorio.setHoraInicio(input.nextLine());
-											String horaInicial = laboratorio.getHoraInicio();
+										if (verificacaoData(dataInicio) == true) {
+											// verificar se a data eh valida
+											System.out.println("Data de Termino da Atividade (dd/mm/aaaa):");
+											laboratorio.setDataFinal(input.nextLine());
+											String dataFinal = laboratorio.getDataFinal();
 
-											if (verificacaoHora(horaInicial) == true) {
+											if (verificacaoData(dataFinal) == true) {
 												// verificar se a hora eh valida
-												System.out.println("Horario de Termino(HH:mm):");
-												laboratorio.setHoraFinal(input.nextLine());
-												String horaFinal = laboratorio.getHoraFinal();
+												System.out.println("Horario de Inicio (HH:mm):");
+												laboratorio.setHoraInicio(input.nextLine());
+												String horaInicial = laboratorio.getHoraInicio();
 
-												if (verificacaoHora(horaFinal) == true) {
+												if (verificacaoHora(horaInicial) == true) {
+													// verificar se a hora eh
+													// valida
+													System.out.println("Horario de Termino(HH:mm):");
+													laboratorio.setHoraFinal(input.nextLine());
+													String horaFinal = laboratorio.getHoraFinal();
 
-													System.out.println(
-															"\nStatus: de 'Em processo de alocacao' para 'alocado'");
+													if (verificacaoHora(horaFinal) == true) {
+														System.out.println(
+																"\nStatus: de 'Em processo de alocacao' para 'alocado'");
+														laboratorio.setResponsavel(emailUsuario);
 
-													laboratorio.setResponsavel(emailUsuario);
-
-													if (identidade.equals("laboratorio 1")) {
-														statusLaboratorio[0] = 1;
-														num_recursos_alocacao--;
-														num_recursos_alocado++;
-														locouProfessor++;
-														break;
-													} else if (identidade.equals("laboratorio 2")) {
-														statusLaboratorio[1] = 1;
-														num_recursos_alocacao--;
-														num_recursos_alocado++;
-														locouProfessor++;
-														break;
-													} else if (identidade.equals("laboratorio 3")) {
-														statusLaboratorio[2] = 1;
-														num_recursos_alocacao--;
-														num_recursos_alocado++;
-														locouProfessor++;
-														break;
+														if (identidade.equals("laboratorio 1")) {
+															statusLaboratorio[0] = 1;
+															num_recursos_alocacao--;
+															num_recursos_alocado++;
+															locouProfessor++;
+															break;
+														} else if (identidade.equals("laboratorio 2")) {
+															statusLaboratorio[1] = 1;
+															num_recursos_alocacao--;
+															num_recursos_alocado++;
+															locouProfessor++;
+															break;
+														} else if (identidade.equals("laboratorio 3")) {
+															statusLaboratorio[2] = 1;
+															num_recursos_alocacao--;
+															num_recursos_alocado++;
+															locouProfessor++;
+															break;
+														}
 													}
 												}
 											}
 										}
+									} else {
+										System.err.println("Titulo da Atividade invalido. Tente novamente");
+										break;
 									}
-								} else {
-									System.err.println("Titulo da Atividade invalido. Tente novamente");
+								} else if (statusLaboratorio[0] != 0 && statusLaboratorio[1] != 0
+										&& statusLaboratorio[2] != 0) {
+									System.err.println("Os laboratorios nao estao disponiveis.\n");
 									break;
 								}
-							} else {
-								System.err.println("O Auditorio nao esta disponivel.\n");
+							} else if (escolhaLocacao == 3){
+								if (statusProjetor[0] == 0 && statusProjetor[1] == 0
+										&& statusProjetor[2] == 0) {
+									System.out.println("\n----------LOCACAO DE PROJETOR----------\n\n");
+									System.out.println("Informacoes basicas\n");
+									System.out.println(
+											"Identificacao do Recurso (projetor 1, projetor 2, projetor 3):");
 
+									projetor.setIdentidade(input.nextLine());
+									String identidade = projetor.getIdentidade();
+
+									if (identidade.equals("projetor 1") || identidade.equals("projetor 2")
+											|| identidade.equals("projetor 3")) {
+										// verificar se a data eh valida
+										System.out.println("Data de Inicio da Atividade (dd/mm/aaaa):");
+										projetor.setDataInicio(input.nextLine());
+										String dataInicio = projetor.getDataInicio();
+
+										if (verificacaoData(dataInicio) == true) {
+											// verificar se a data eh valida
+											System.out.println("Data de Termino da Atividade (dd/mm/aaaa):");
+											projetor.setDataFinal(input.nextLine());
+											String dataFinal = projetor.getDataFinal();
+
+											if (verificacaoData(dataFinal) == true) {
+												// verificar se a hora eh valida
+												System.out.println("Horario de Inicio (HH:mm):");
+												projetor.setHoraInicio(input.nextLine());
+												String horaInicial = projetor.getHoraInicio();
+
+												if (verificacaoHora(horaInicial) == true) {
+													// verificar se a hora eh
+													// valida
+													System.out.println("Horario de Termino(HH:mm):");
+													projetor.setHoraFinal(input.nextLine());
+													String horaFinal = projetor.getHoraFinal();
+
+													if (verificacaoHora(horaFinal) == true) {
+														System.out.println(
+																"\nStatus: de 'Em processo de alocacao' para 'alocado'");
+														projetor.setResponsavel(emailUsuario);
+
+														if (identidade.equals("projetor 1")) {
+															statusProjetor[0] = 1;
+															num_recursos_alocacao--;
+															num_recursos_alocado++;
+															locouProfessor++;
+															break;
+														} else if (identidade.equals("projetor 2")) {
+															statusProjetor[1] = 1;
+															num_recursos_alocacao--;
+															num_recursos_alocado++;
+															locouProfessor++;
+															break;
+														} else if (identidade.equals("projetor 3")) {
+															statusProjetor[2] = 1;
+															num_recursos_alocacao--;
+															num_recursos_alocado++;
+															locouProfessor++;
+															break;
+														}
+													}
+												}
+											}
+										}
+									} else {
+										System.err.println("Titulo da Atividade invalido. Tente novamente");
+										break;
+									}
+								} else if (statusProjetor[0] != 0 && statusProjetor[1] != 0
+										&& statusProjetor[2] != 0) {
+									System.err.println("Os projetores nao estao disponiveis.\n");
+									break;
+								}
+							} else if (escolhaLocacao == 4){
+								if (statusSala[0] == 0 && statusSala[1] == 0
+										&& statusSala[2] == 0) {
+									System.out.println("\n----------LOCACAO DE SALA----------\n\n");
+									System.out.println("Informacoes basicas\n");
+									System.out.println(
+											"Identificacao do Recurso (sala 1, sala 2, sala 3):");
+
+									sala.setIdentidade(input.nextLine());
+									String identidade = sala.getIdentidade();
+
+									if (identidade.equals("sala 1") || identidade.equals("sala 2")
+											|| identidade.equals("sala 3")) {
+										// verificar se a data eh valida
+										System.out.println("Data de Inicio da Atividade (dd/mm/aaaa):");
+										sala.setDataInicio(input.nextLine());
+										String dataInicio = sala.getDataInicio();
+
+										if (verificacaoData(dataInicio) == true) {
+											// verificar se a data eh valida
+											System.out.println("Data de Termino da Atividade (dd/mm/aaaa):");
+											sala.setDataFinal(input.nextLine());
+											String dataFinal = sala.getDataFinal();
+
+											if (verificacaoData(dataFinal) == true) {
+												// verificar se a hora eh valida
+												System.out.println("Horario de Inicio (HH:mm):");
+												sala.setHoraInicio(input.nextLine());
+												String horaInicial = sala.getHoraInicio();
+
+												if (verificacaoHora(horaInicial) == true) {
+													// verificar se a hora eh
+													// valida
+													System.out.println("Horario de Termino(HH:mm):");
+													sala.setHoraFinal(input.nextLine());
+													String horaFinal = sala.getHoraFinal();
+
+													if (verificacaoHora(horaFinal) == true) {
+														System.out.println(
+																"\nStatus: de 'Em processo de alocacao' para 'alocado'");
+														sala.setResponsavel(emailUsuario);
+
+														if (identidade.equals("sala 1")) {
+															statusSala[0] = 1;
+															num_recursos_alocacao--;
+															num_recursos_alocado++;
+															locouProfessor++;
+															break;
+														} else if (identidade.equals("sala 2")) {
+															statusSala[1] = 1;
+															num_recursos_alocacao--;
+															num_recursos_alocado++;
+															locouProfessor++;
+															break;
+														} else if (identidade.equals("sala 3")) {
+															statusSala[2] = 1;
+															num_recursos_alocacao--;
+															num_recursos_alocado++;
+															locouProfessor++;
+															break;
+														}
+													}
+												}
+											}
+										}
+									} else {
+										System.err.println("Titulo da Atividade invalido. Tente novamente");
+										break;
+									}
+								} else if (statusSala[0] != 0 && statusSala[1] != 0
+										&& statusSala[2] != 0) {
+									System.err.println("As salas nao estao disponiveis.\n");
+									break;
+								}
+							} else if (escolhaLocacao == 5){
 								break;
 							}
-
 						} while (escolhaLocacao != 5);
-
-					} else if (logouPesquisador == 1 && locouPesquisador == 0) {
+					} else if (logouPesquisador == 1 && locouPesquisador == 0 && podeAlocar == 0) {
 						System.out.println("\n----------LOCACAO DE RECURSOS----------\n\n");
 						break;
-					} else if (logouAdministrador == 1) {
+					} else if (logouAdministrador == 1 && podeAlocar == 1) {
 						int escolhaAdministrador;
 						if (statusAuditorio[0] != 0) {
 							System.out.println("\n----------VERIFICACAO DA LOCACAO DE RECURSOS----------\n\n");
@@ -682,7 +824,6 @@ public class TelaInicial {
 									.println("Deseja alterar o Status de alocacao do 'auditorio 1' para 'concluido'?");
 							System.out.println("1. Sim");
 							System.out.println("2. Nao");
-
 							escolhaAdministrador = input.nextInt();
 							input.nextLine();
 
@@ -704,7 +845,6 @@ public class TelaInicial {
 										"Deseja alterar o Status de alocacao do 'laboratorio 1' para 'concluido'?");
 								System.out.println("1. Sim");
 								System.out.println("2. Nao");
-
 								escolhaAdministrador = input.nextInt();
 								input.nextLine();
 
@@ -724,7 +864,6 @@ public class TelaInicial {
 										"Deseja alterar o Status de alocacao do 'laboratorio 2' para 'concluido'?");
 								System.out.println("1. Sim");
 								System.out.println("2. Nao");
-
 								escolhaAdministrador = input.nextInt();
 								input.nextLine();
 
@@ -744,7 +883,6 @@ public class TelaInicial {
 										"Deseja alterar o Status de alocacao do 'laboratorio 3' para 'concluido'?");
 								System.out.println("1. Sim");
 								System.out.println("2. Nao");
-
 								escolhaAdministrador = input.nextInt();
 								input.nextLine();
 
@@ -766,7 +904,6 @@ public class TelaInicial {
 										"Deseja alterar o Status de alocacao do 'projetor 1' para 'concluido'?");
 								System.out.println("1. Sim");
 								System.out.println("2. Nao");
-
 								escolhaAdministrador = input.nextInt();
 								input.nextLine();
 
@@ -786,7 +923,6 @@ public class TelaInicial {
 										"Deseja alterar o Status de alocacao do 'projetor 2' para 'concluido'?");
 								System.out.println("1. Sim");
 								System.out.println("2. Nao");
-
 								escolhaAdministrador = input.nextInt();
 								input.nextLine();
 
@@ -806,7 +942,6 @@ public class TelaInicial {
 										"Deseja alterar o Status de alocacao do 'projetor 3' para 'concluido'?");
 								System.out.println("1. Sim");
 								System.out.println("2. Nao");
-
 								escolhaAdministrador = input.nextInt();
 								input.nextLine();
 
@@ -827,7 +962,6 @@ public class TelaInicial {
 								System.out.println("Deseja alterar o Status de alocacao da 'sala 1' para 'concluido'?");
 								System.out.println("1. Sim");
 								System.out.println("2. Nao");
-
 								escolhaAdministrador = input.nextInt();
 								input.nextLine();
 
@@ -846,7 +980,6 @@ public class TelaInicial {
 								System.out.println("Deseja alterar o Status de alocacao da 'sala 2' para 'concluido'?");
 								System.out.println("1. Sim");
 								System.out.println("2. Nao");
-
 								escolhaAdministrador = input.nextInt();
 								input.nextLine();
 
@@ -865,7 +998,6 @@ public class TelaInicial {
 								System.out.println("Deseja alterar o Status de alocacao da 'sala 3' para 'concluido'?");
 								System.out.println("1. Sim");
 								System.out.println("2. Nao");
-
 								escolhaAdministrador = input.nextInt();
 								input.nextLine();
 
@@ -889,10 +1021,8 @@ public class TelaInicial {
 						if (statusAuditorio[0] == 1) {
 							do {
 								System.out.println("\n----------CONFIRMACAO DE LOCACAO DE AUDITORIO----------\n\n");
-
 								System.out.println(
 										"Titulo da Atividade (aula tradicional, apresentacoes ou laboratorio):");
-
 								auditorio1.setTitulo(input.nextLine());
 								String titulo = auditorio1.getTitulo();
 
@@ -906,7 +1036,6 @@ public class TelaInicial {
 											break;
 										}
 									}
-
 									System.out.println("Descricao da Atividade:");
 									auditorio1.setDescricao(input.nextLine());
 
@@ -950,6 +1079,7 @@ public class TelaInicial {
 										statusAuditorio[0] = 2;
 										num_recursos_alocado--;
 										num_recursos_andamento++;
+										locouProfessor--;
 										escolhaLocacao = 5;
 										break;
 									}
@@ -959,7 +1089,6 @@ public class TelaInicial {
 								|| statusLaboratorio[2] == 1) {
 							do {
 								System.out.println("\n----------CONFIRMACAO DE LOCACAO DE LABORATORIO----------\n\n");
-
 								System.out.println(
 										"Titulo da Atividade (aula tradicional, apresentacoes ou laboratorio):");
 
@@ -986,7 +1115,6 @@ public class TelaInicial {
 											}
 										}
 									}
-
 									System.out.println("Descricao da Atividade:");
 									laboratorio.setDescricao(input.nextLine());
 
@@ -1027,9 +1155,9 @@ public class TelaInicial {
 										System.out.println("Laboratorio Confirmado.");
 										System.out.println(
 												"O Status so constara como 'concluido' com a permissao do Administrador do Sistema.");
-										
+
 										if (laboratorio.getIdentidade().equals("laboratorio 1")) {
-											statusLaboratorio[0] = 2;											
+											statusLaboratorio[0] = 2;
 										} else if (laboratorio.getIdentidade().equals("laboratorio 2")) {
 											statusLaboratorio[1] = 2;
 										} else if (laboratorio.getIdentidade().equals("laboratorio 3")) {
@@ -1037,6 +1165,7 @@ public class TelaInicial {
 										}
 										num_recursos_alocado--;
 										num_recursos_andamento++;
+										locouProfessor--;
 										escolhaLocacao = 5;
 										break;
 									}
@@ -1055,7 +1184,6 @@ public class TelaInicial {
 					System.out.println("1. Por Usuario");
 					System.out.println("2. Por Recurso");
 					System.out.println("3. Voltar ao Menu");
-
 					escolhaConsulta = input.nextInt();
 					input.nextLine();
 
@@ -1069,19 +1197,16 @@ public class TelaInicial {
 							System.out.println("3. Pesquisador(a)");
 							System.out.println("4. Administrador");
 							System.out.println("5. Voltar ao Menu");
-
 							escolhaConsulta1 = input.nextInt();
 							input.nextLine();
 
 							if (escolhaConsulta1 == 1) {
 								scan = new Scanner(System.in);
-
 								Aluno usuario = new Aluno();
 
 								if (listaAlunos.size() == 0) {
 									System.err.println("\nNao existe cadastro de alunos no Sistema.\n");
 								} else {
-
 									System.out.println("\n----------CONSULTA POR ALUNO(A)----------\n\n");
 									System.out.println(
 											"Digite o Email do(a) aluno(a) para obter informacoes sobre ele(a):");
@@ -1099,16 +1224,13 @@ public class TelaInicial {
 										}
 									}
 								}
-
 							} else if (escolhaConsulta1 == 2) {
 								scan = new Scanner(System.in);
-
 								Professor usuario = new Professor();
 
 								if (listaProfessores.size() == 0) {
 									System.err.println("\nNao existe cadastro de professores no Sistema.\n");
 								} else {
-
 									System.out.println("\n----------CONSULTA POR PROFESSOR(A)----------\n\n");
 									System.out.println(
 											"Digite o Email do(a) professor(a) para obter informacoes sobre ele(a):");
@@ -1123,7 +1245,6 @@ public class TelaInicial {
 												System.out.println("E-mail:  " + usuarios.getEmail());
 												System.out.println("Recurso Alocado:  " + usuarios.getAlocou());
 												System.out.println("Atividade Realizada:  " + usuarios.getAtividade());
-
 											} else {
 												System.out.println("\nNome:  " + usuarios.getNome());
 												System.out.println("E-mail:  " + usuarios.getEmail());
@@ -1135,12 +1256,10 @@ public class TelaInicial {
 								}
 							} else if (escolhaConsulta1 == 3) {
 								scan = new Scanner(System.in);
-
 								Pesquisador usuario = new Pesquisador();
 								if (listaPesquisadores.size() == 0) {
 									System.err.println("\nNao existe cadastro de pesquisadores no Sistema.\n");
 								} else {
-
 									System.out.println("\n----------CONSULTA POR PESQUISADOR(A)----------\n\n");
 									System.out.println(
 											"Digite o Email do(a) pesquisador(a) para obter informacoes sobre ele(a):");
@@ -1159,14 +1278,12 @@ public class TelaInicial {
 									}
 								}
 							} else if (escolhaConsulta1 == 4) {
-								// administrador
 								System.out.println("\nNome:  Baldoino Fonseca");
 								System.out.println("\nE-mail:  baldoino@ic.ufal.br");
 							} else if (escolhaConsulta1 == 5) {
 								escolhaConsulta = 3;
 								break;
 							}
-
 						} while (escolhaConsulta != 5);
 					} else if (escolhaConsulta == 2) {
 						int escolhaConsulta1 = 0;
@@ -1178,7 +1295,6 @@ public class TelaInicial {
 							System.out.println("3. Projetores");
 							System.out.println("4. Salas");
 							System.out.println("5. Voltar ao Menu");
-
 							escolhaConsulta1 = input.nextInt();
 							input.nextLine();
 
@@ -1205,14 +1321,12 @@ public class TelaInicial {
 											System.out.println("Data de termino:  " + usuarios.getDataFinal());
 											System.out.println("Horario de inicio:  " + usuarios.getHoraInicio());
 											System.out.println("Horario de termino:  " + usuarios.getHoraFinal());
-
 										} else {
 											System.err.println(
 													"\nNao existe cadastro de recurso com tal identificacao.\n");
 										}
 									}
 								}
-
 							} else if (escolhaConsulta1 == 2) {
 								Laboratorios lab = new Laboratorios();
 
@@ -1238,7 +1352,6 @@ public class TelaInicial {
 											System.out.println("Data de termino:  " + usuarios.getDataFinal());
 											System.out.println("Horario de inicio:  " + usuarios.getHoraInicio());
 											System.out.println("Horario de termino:  " + usuarios.getHoraFinal());
-
 										} else {
 											System.err.println(
 													"\nNao existe cadastro de recurso com tal identificacao.\n");
@@ -1270,7 +1383,6 @@ public class TelaInicial {
 											System.out.println("Data de termino:  " + usuarios.getDataFinal());
 											System.out.println("Horario de inicio:  " + usuarios.getHoraInicio());
 											System.out.println("Horario de termino:  " + usuarios.getHoraFinal());
-
 										} else {
 											System.err.println(
 													"\nNao existe cadastro de recurso com tal identificacao.\n");
@@ -1302,7 +1414,6 @@ public class TelaInicial {
 											System.out.println("Data de termino:  " + usuarios.getDataFinal());
 											System.out.println("Horario de inicio:  " + usuarios.getHoraInicio());
 											System.out.println("Horario de termino:  " + usuarios.getHoraFinal());
-
 										} else {
 											System.err.println(
 													"\nNao existe cadastro de recurso com tal identificacao.\n");
@@ -1313,12 +1424,9 @@ public class TelaInicial {
 								escolhaConsulta = 3;
 								break;
 							}
-
 						} while (escolhaConsulta != 5);
 					}
-
 				} while (escolhaConsulta != 3);
-
 			} else if (escolhaMenu == 5) {
 				num_alocacoes = num_recursos_alocado + num_recursos_andamento + num_recursos_concluido;
 				System.out.println("\n----------RELATORIO ATUAL----------\n\n");
@@ -1332,7 +1440,6 @@ public class TelaInicial {
 				System.out.println("Numero de Apresentacoes:" + num_apresentacao);
 				System.out.println("Numero de Atividades em Laboratorio:" + num_laboratorio);
 				System.out.println("");
-
 			}
 		} while (escolhaMenu != 6);
 	}

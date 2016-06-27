@@ -1,5 +1,9 @@
 package Usuarios;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Pessoa {
 
 	public String nome;
@@ -46,4 +50,5 @@ public class Pessoa {
 	public void setAtividade(String atividade) {
 		this.atividade = atividade;
 	}
+
 }
