@@ -73,12 +73,6 @@ public class TelaInicial {
 		ArrayList<Projetores> listaProjetores = new ArrayList<Projetores>();
 		ArrayList<Salas> listaSalas = new ArrayList<Salas>();
 
-		Calendar dataAtual = Calendar.getInstance();
-		dataAtual.set(2016, Calendar.JUNE, 29);
-		dataAtual.set(Calendar.HOUR_OF_DAY, 10);
-		DateFormat formatoData = DateFormat.getDateInstance();
-		Date data = dataAtual.getTime();
-
 		num_usuarios = 1;
 		num_recursos_alocacao = 10;
 		num_recursos_alocado = 0;
@@ -97,10 +91,6 @@ public class TelaInicial {
 		escolhaMenu = 0;
 
 		while (escolhaMenu != 6) {
-			// data = dataAtual.getTime();
-			// System.out.println("Data: " + formatoData.format(data));
-			// System.out.println("Hora: " +
-			// dataAtual.get(Calendar.HOUR_OF_DAY));
 			System.out.println(
 					"\n\n  ----------SISTEMA DE GESTAO----------\n     ----------DE RECURSOS----------\n      ----------(2016.1)----------\n\n");
 			System.out.println("Escolha uma opcao:");
