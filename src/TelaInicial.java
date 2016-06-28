@@ -92,7 +92,7 @@ public class TelaInicial {
 
 		while (escolhaMenu != 6) {
 			System.out.println(
-					"\n\n  ----------SISTEMA DE GESTAO----------\n     ----------DE RECURSOS----------\n      ----------(2016.1)----------\n\n");
+					"\n\n  ----------SISTEMA DE GESTAO----------\n     ----------DE RECURSOS----------\n      ----------(2016)----------\n\n");
 			System.out.println("Escolha uma opcao:");
 			System.out.println("1. Login/Logout");
 			System.out.println("2. Cadastro");
